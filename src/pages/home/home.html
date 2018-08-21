@@ -1,18 +1,23 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+<ion-content class="container">
 </ion-content>
+<div style="position: absolute; bottom: 170px; width: 100%">
+  <div style="text-align: center">
+    <ion-item>
+      <ion-label color="primary" floating>Usuario</ion-label>
+      <ion-input [(ngModel)]="user"></ion-input>
+    </ion-item>
+  </div>
+</div>
+<div style="position: absolute; bottom: 100px; width: 100%">
+  <div style="text-align: center">
+    <ion-item>
+      <ion-label color="primary" floating>Contraseña</ion-label>
+      <ion-input [(ngModel)]="pw"></ion-input>
+    </ion-item>
+  </div>
+</div>
+<div style="position: absolute; bottom: 0px; width: 100%">
+  <div style="text-align: center">
+    <button ion-button full color="dark" (click)="goToWelcome()">Ingresar</button>
+  </div>
+</div>
