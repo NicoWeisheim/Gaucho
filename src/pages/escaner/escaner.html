@@ -1,0 +1,40 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Escaner QR</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-row>
+    <button ion-button color="primary" (click)="openScanner()">Escanear</button>
+  </ion-row>
+ <ion-row>
+  <button ion-button color="primary" (click)="ingresarManualmente()">Ingresar manualmente</button>
+ </ion-row> 
+  <ion-item *ngIf="manual">
+    <ion-label color="primary" floating>Ingresar QR</ion-label>
+    <ion-input [(ngModel)]="qr"></ion-input>
+  </ion-item>
+  <ion-row *ngIf="qr">
+    <h1>Usted a escaneado a</h1>
+  </ion-row>
+  <ion-row *ngIf="qr"> 
+    <img class="circle-pic" src="../../assets/imgs/c.jpg">
+  </ion-row>
+  <ion-row *ngIf="qr">
+    <h3>Juan Perez</h3>
+  </ion-row>
+  <ion-row *ngIf="qr">
+    <h3>{{hora}}</h3>
+  </ion-row>
+  <ion-row *ngIf="qr">
+    <ion-col>
+      <button ion-button color="secondary">Ingreso</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button color="danger">Egreso</button>
+    </ion-col>
+  </ion-row>
+</ion-content>
