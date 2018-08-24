@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Escaner QR</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2>
+        Fecha Pedido
+      </ion-col>
+      <ion-col col-4>
+        Supervisor
+      </ion-col>
+      <ion-col col-2>
+        Cantidad Personas
+      </ion-col>
+      <ion-col col-2>
+        Destino
+      </ion-col>
+      <ion-col col-2>
+        Dia Ingreso
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor='let sol of solicitudes'>
+      <ion-col col-2>{{sol.fechaPed}}</ion-col>
+      <ion-col col-4>{{sol.sup}}</ion-col>
+      <ion-col col-2>{{sol.cantPer}}</ion-col>
+      <ion-col col-2>{{sol.destino}}</ion-col>
+      <ion-col col-2>{{sol.diaIngreso}}</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

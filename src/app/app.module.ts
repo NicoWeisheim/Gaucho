@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,8 @@ import { EscanerPage } from '../pages/escaner/escaner';
     HomePage,
     ListPage,
     WelcomePage,
-    EscanerPage
+    EscanerPage,
+    ListSolicitudesPage
   ],
   imports: [
     BrowserModule,
@@ -29,12 +32,14 @@ import { EscanerPage } from '../pages/escaner/escaner';
     HomePage,
     ListPage,
     WelcomePage,
-    EscanerPage
+    EscanerPage,
+    ListSolicitudesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BarcodeScanner
   ]
 })
 export class AppModule {}
