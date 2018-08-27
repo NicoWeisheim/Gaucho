@@ -3,11 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu" color="primary"></ion-icon>
     </button>
-    <ion-title color="light">Escaner QR</ion-title>
+    <ion-title color="light">solicitudes</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col col-2>
         Fecha Pedido
@@ -32,5 +32,23 @@
       <ion-col col-2>{{sol.destino}}</ion-col>
       <ion-col col-2>{{sol.diaIngreso}}</ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid> -->
+  <ion-list class="accordion-list">
+    <!-- First Level -->
+    <ion-list-header *ngFor="let sol of solicitudes; let i = index" no-lines no-padding>
+      <!-- Toggle Button -->
+      <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': sol.open, 'section': !sol.open}">
+        <ion-icon item-left name="arrow-forward" *ngIf="!sol.open"></ion-icon>
+        <ion-icon item-left name="arrow-down" *ngIf="sol.open"></ion-icon>
+          {{ sol.sup }}
+      </button>
+    </ion-list-header>
+    <ion-list *ngIf='sol.open'>
+      <ion-item>Supervisor: {{sol.sup}}</ion-item>
+      <ion-item>Fecha Pedido: {{sol.fechaPed}}</ion-item>
+      <ion-item>Cantidad de Personas: {{sol.cantPer}}</ion-item>
+      <ion-item>Destino: {{sol.destino}}</ion-item>
+      <ion-item>Dia Ingreso: {{sol.diaIngreso}}</ion-item>
+    </ion-list>
+  </ion-list>
 </ion-content>
