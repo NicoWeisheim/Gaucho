@@ -10,8 +10,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
+import {QRScanner} from '@ionic-native/qr-scanner';
+import { AccordionComponent } from '../components/accordion/accordion';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes'
     ListPage,
     WelcomePage,
     EscanerPage,
-    ListSolicitudesPage
+    ListSolicitudesPage,
+    AccordionComponent
   ],
   imports: [
     BrowserModule,
@@ -33,13 +35,14 @@ import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes'
     ListPage,
     WelcomePage,
     EscanerPage,
-    ListSolicitudesPage
+    ListSolicitudesPage,
+    AccordionComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BarcodeScanner
+    QRScanner
   ]
 })
 export class AppModule {}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { QRScanner, QRScannerStatus } from '../../../node_modules/@ionic-native/qr-scanner';
+
 
 @Component({
   selector: 'page-escaner',
@@ -11,7 +12,7 @@ export class EscanerPage {
   manual: boolean = false;
   qr: string;
   hora: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private barcodeScanner: BarcodeScanner) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private qrS: QRScanner, private toast: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -24,11 +25,23 @@ export class EscanerPage {
   }
 
   openScanner(){
-    this.barcodeScanner.scan().then(data => {
-      this.qr = data.text;
-    }).catch(err => {
-      console.log(err);
-    });
+   this.qrS.prepare()
+   .then((status: QRScannerStatus) => {
+     if (status.authorized){
+      let scanSub = this.qrS.scan().subscribe((text: string) => {
+         this.qr = text;
+         this.qrS.hide();
+         scanSub.unsubscribe();
+       });
+     } else {
+      let toast = this.toast.create({
+        message: 'Es necesario dar permisos para el escaner',
+        duration: 2000,
+        position: 'middle'
+      });
+      toast.present();
+     };
+   }).catch((e: any) => console.log('error: ', e));
   }
 
 }
