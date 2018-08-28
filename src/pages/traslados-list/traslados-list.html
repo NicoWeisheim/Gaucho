@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <button ion-button menuToggle>
+        <ion-icon name="menu" color="primary"></ion-icon>
+      </button>
+      <ion-title color="light">Traslados</ion-title>
+    </ion-navbar>
+  </ion-header>
+  <ion-content>
+    <accordion title={{tras.supOri}} *ngFor='let tras of traslados'> 
+      <ion-list>
+          <ion-item>Supervisor Origen: {{tras.supOri}}</ion-item>
+          <ion-item>Fecha Pedido: {{tras.fechaPed}}</ion-item>
+          <ion-item>Supervisor Destino: {{tras.supDes}}</ion-item>
+          <ion-item>Cantidad de Personas: {{tras.cantPer}}</ion-item>
+          <ion-item>Destino: {{tras.destino}}</ion-item>
+          <ion-item>Dia Ingreso: {{tras.diaIngreso}}</ion-item>
+          <ion-item>
+            <button ion-button color="green">Ver Detalle</button>
+          </ion-item>
+      </ion-list>
+    </accordion>
+  </ion-content>

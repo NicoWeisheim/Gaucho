@@ -13,6 +13,8 @@ import { EscanerPage } from '../pages/escaner/escaner';
 import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
 import {QRScanner} from '@ionic-native/qr-scanner';
 import { AccordionComponent } from '../components/accordion/accordion';
+import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
+import { UserListPage } from '../pages/user-list/user-list';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { AccordionComponent } from '../components/accordion/accordion';
     WelcomePage,
     EscanerPage,
     ListSolicitudesPage,
-    AccordionComponent
+    AccordionComponent,
+    TrasladosListPage,
+    UserListPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { AccordionComponent } from '../components/accordion/accordion';
     WelcomePage,
     EscanerPage,
     ListSolicitudesPage,
-    AccordionComponent
+    AccordionComponent,
+    TrasladosListPage,
+    UserListPage
   ],
   providers: [
     StatusBar,

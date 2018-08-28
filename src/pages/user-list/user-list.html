@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Traslados</ion-title>
+  </ion-navbar>
+</ion-header>
+ <ion-content>
+  <accordion title={{usr.nombre}} *ngFor='let usr of users'> 
+    <ion-list>
+        <ion-item>Nombre y Apellido: {{usr.nombre}}</ion-item>
+        <ion-item>Puesto: {{usr.puesto}}</ion-item>
+        <ion-item *ngIf='usr.cuadrilla != ""'>Cuadrilla: {{usr.cuadrilla}}</ion-item>
+        <ion-item *ngIf='usr.cuadrilla === ""'>
+          <button ion-button color="green">Asignar Cuadrilla</button>
+        </ion-item>
+    </ion-list>
+  </accordion>
+</ion-content>

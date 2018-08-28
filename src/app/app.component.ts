@@ -8,6 +8,8 @@ import { ListPage } from '../pages/list/list';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
 import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
+import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
+import { UserListPage } from '../pages/user-list/user-list';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,7 +28,9 @@ export class MyApp {
     this.pages = [
       { title: 'Welcome', component: WelcomePage },
       {title: 'Escaner QR', component: EscanerPage},
-      {title: 'Solicitudes', component: ListSolicitudesPage}
+      {title: 'Solicitudes', component: ListSolicitudesPage},
+      {title: 'Traslados', component: TrasladosListPage},
+      {title: 'Usuarios', component: UserListPage}
     ];
 
   }
