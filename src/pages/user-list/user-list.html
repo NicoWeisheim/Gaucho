@@ -3,7 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu" color="primary"></ion-icon>
     </button>
-    <ion-title color="light">Traslados</ion-title>
+    <ion-buttons end> 
+      <button ion-button color="secondary">Nuevo Usuario</button> 
+    </ion-buttons>
+    <ion-title color="light">Usuarios</ion-title>
   </ion-navbar>
 </ion-header>
  <ion-content>
@@ -13,7 +16,7 @@
         <ion-item>Puesto: {{usr.puesto}}</ion-item>
         <ion-item *ngIf='usr.cuadrilla != ""'>Cuadrilla: {{usr.cuadrilla}}</ion-item>
         <ion-item *ngIf='usr.cuadrilla === ""'>
-          <button ion-button color="green">Asignar Cuadrilla</button>
+          <button ion-button color="secondary">Asignar Cuadrilla</button>
         </ion-item>
     </ion-list>
   </accordion>
