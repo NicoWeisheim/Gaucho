@@ -12,12 +12,13 @@ export class EscanerPage {
   manual: boolean = false;
   qr: string;
   hora: string;
+  exist: boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, private qrS: QRScanner, private toast: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EscanerPage');
-    this.hora = new Date().toLocaleTimeString();
+    
   }
 
   ingresarManualmente(){
@@ -42,6 +43,11 @@ export class EscanerPage {
       toast.present();
      };
    }).catch((e: any) => console.log('error: ', e));
+  }
+
+  manualScan(){
+    this.hora = new Date().toLocaleTimeString();
+    this.exist = !this.exist ? true : false;
   }
 
 }

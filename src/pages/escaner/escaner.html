@@ -13,23 +13,34 @@
  <ion-row>
   <button ion-button color="primary" (click)="ingresarManualmente()">Ingresar manualmente</button>
  </ion-row> 
-  <ion-item *ngIf="manual">
-    <ion-label color="primary" floating>Ingresar QR</ion-label>
-    <ion-input [(ngModel)]="qr"></ion-input>
-  </ion-item>
-  <ion-row *ngIf="qr">
+ <ion-row>
+  <ion-col>
+    <ion-item *ngIf="manual">
+      <ion-label color="primary" floating>Ingresar QR</ion-label>
+      <ion-input [(ngModel)]="qr"></ion-input>
+     </ion-item>
+  </ion-col>
+  <ion-col>
+    <ion-fab *ngIf="manual">
+      <button ion-fab mini (click)="manualScan()">
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+  </ion-col>
+</ion-row>
+  <ion-row *ngIf="exist">
     <h1>Usted a escaneado a</h1>
   </ion-row>
-  <ion-row *ngIf="qr"> 
+  <ion-row *ngIf="exist"> 
     <img class="circle-pic" src="../assets/imgs/peon.jpg">
   </ion-row>
-  <ion-row *ngIf="qr">
+  <ion-row *ngIf="exist">
     <h3>Juan Perez</h3>
   </ion-row>
-  <ion-row *ngIf="qr">
+  <ion-row *ngIf="exist">
     <h3>{{hora}}</h3>
   </ion-row>
-  <ion-row *ngIf="qr">
+  <ion-row *ngIf="exist">
     <ion-col>
       <button ion-button full color="secondary">Ingreso</button>
     </ion-col>
