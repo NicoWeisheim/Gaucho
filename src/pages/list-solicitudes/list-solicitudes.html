@@ -7,50 +7,6 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col col-2>
-        Fecha Pedido
-      </ion-col>
-      <ion-col col-4>
-        Supervisor
-      </ion-col>
-      <ion-col col-2>
-        Cantidad Personas
-      </ion-col>
-      <ion-col col-2>
-        Destino
-      </ion-col>
-      <ion-col col-2>
-        Dia Ingreso
-      </ion-col>
-    </ion-row>
-    <ion-row *ngFor='let sol of solicitudes'>
-      <ion-col col-2>{{sol.fechaPed}}</ion-col>
-      <ion-col col-4>{{sol.sup}}</ion-col>
-      <ion-col col-2>{{sol.cantPer}}</ion-col>
-      <ion-col col-2>{{sol.destino}}</ion-col>
-      <ion-col col-2>{{sol.diaIngreso}}</ion-col>
-    </ion-row>
-  </ion-grid> -->
-  <!-- <ion-list class="accordion-list"> -->
-    <!-- First Level -->
-    <!-- <ion-list-header *ngFor="let sol of solicitudes; let i = index" no-lines no-padding> -->
-      <!-- Toggle Button -->
-      <!-- <button ion-item (click)="toggleSection(i)" detail-none [ngClass]="{'section-active': sol.open, 'section': !sol.open}">
-        <ion-icon item-left name="arrow-forward" *ngIf="!sol.open"></ion-icon>
-        <ion-icon item-left name="arrow-down" *ngIf="sol.open"></ion-icon>
-          {{ sol.sup }}
-      </button>
-    </ion-list-header>
-    <ion-list class="list" *ngIf='sol.open'>
-      <ion-item>Supervisor: {{sol.sup}}</ion-item>
-      <ion-item>Fecha Pedido: {{sol.fechaPed}}</ion-item>
-      <ion-item>Cantidad de Personas: {{sol.cantPer}}</ion-item>
-      <ion-item>Destino: {{sol.destino}}</ion-item>
-      <ion-item>Dia Ingreso: {{sol.diaIngreso}}</ion-item>
-    </ion-list>
-  </ion-list> -->
   <accordion title={{sol.sup}} *ngFor='let sol of solicitudes'> 
     <ion-list>
         <ion-item>Supervisor: {{sol.sup}}</ion-item>

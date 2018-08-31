@@ -1,0 +1,21 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Cuadrillas</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <accordion title='Cabecilla: {{cuad.sup}}'  *ngFor='let cuad of cuadrillas'>
+    <h2>UbicacionActual: {{cuad.destino}}</h2>
+    <p>Integrantes</p>
+    <ion-row *ngFor='let int of cuad.integrantes'>
+        <ion-col>{{int.nombre}}</ion-col>
+        <ion-col>{{int.puesto}}</ion-col>
+        <ion-col>
+          <button ion-button outline>Mover</button>
+        </ion-col>
+    </ion-row>
+  </accordion>
+</ion-content>
