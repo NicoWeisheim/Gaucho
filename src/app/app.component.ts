@@ -11,6 +11,7 @@ import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes'
 import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
 import { UserListPage } from '../pages/user-list/user-list';
 import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
+import { TrasladoPage } from '../pages/traslado/traslado';
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,8 @@ export class MyApp {
       {title: 'Solicitudes', component: ListSolicitudesPage},
       {title: 'Traslados', component: TrasladosListPage},
       {title: 'Usuarios', component: UserListPage},
-      {title: 'Cuadrillas', component: ListCuadrillasPage}
+      {title: 'Cuadrillas', component: ListCuadrillasPage},
+      {title: 'Traslado', component: TrasladoPage}
     ];
 
   }

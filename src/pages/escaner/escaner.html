@@ -8,10 +8,10 @@
 </ion-header>
 <ion-content>
   <ion-row>
-    <button ion-button color="primary" (click)="openScanner()">Escanear</button>
+    <button ion-button color="primary" (click)="openScanner()" *ngIf='!camera'>Escanear</button>
   </ion-row>
  <ion-row>
-  <button ion-button color="primary" (click)="ingresarManualmente()">Ingresar manualmente</button>
+  <button ion-button color="primary" (click)="ingresarManualmente()" *ngIf='!camera'>Ingresar manualmente</button>
  </ion-row> 
  <ion-row>
   <ion-col>
@@ -32,13 +32,16 @@
     <h1>Usted a escaneado a</h1>
   </ion-row>
   <ion-row *ngIf="exist"> 
-    <img class="circle-pic" src="../assets/imgs/peon.jpg">
+    <img class="circle-pic" src="../../assets/imgs/peon.jpg">
   </ion-row>
   <ion-row *ngIf="exist">
     <h3>Juan Perez</h3>
   </ion-row>
   <ion-row *ngIf="exist">
     <h3>{{hora}}</h3>
+  </ion-row>
+  <ion-row *ngIf="exist">
+    <h3>{{qr}}</h3>
   </ion-row>
   <ion-row *ngIf="exist">
     <ion-col>

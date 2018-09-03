@@ -1,0 +1,52 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Nuevo Traslado</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Origen: </ion-label>
+      <ion-select [(ngModel)]="origen">
+        <ion-option *ngFor='let lu of lugares' value="{{lu.id}}">{{lu.descripcion}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Supervisor Origen: </ion-label>
+      <ion-select [(ngModel)]="supOri">
+        <ion-option *ngFor='let sup of supervisores' value="{{sup.id}}">{{sup.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>Fecha Traslado</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fechaTraslado"></ion-datetime>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>Destino: </ion-label>
+      <ion-select [(ngModel)]="destino">
+        <ion-option *ngFor='let lu of lugares' value="{{lu.id}}">{{lu.descripcion}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      <ion-label>Supervisor Destino: </ion-label>
+      <ion-select [(ngModel)]="supDes">
+        <ion-option *ngFor='let sup of supervisores' value="{{sup.id}}">{{sup.nombre}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list> 
+  <button ion-button block color='primary' (click)="seleccionarPersonas()">Siguiente</button>
+</ion-content>
+<!-- <div style="position: absolute; bottom: 0px; width: 100%">
+  <div style="text-align: center">
+    <button ion-button block color="primary" (click)="seleccionarPersonas()">Siguiente</button>
+  </div>
+</div> -->

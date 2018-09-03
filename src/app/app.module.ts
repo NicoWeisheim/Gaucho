@@ -5,7 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
-
+import {SQLite} from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePage } from '../pages/welcome/welcome';
@@ -16,6 +16,9 @@ import { AccordionComponent } from '../components/accordion/accordion';
 import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
 import { UserListPage } from '../pages/user-list/user-list';
 import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
+import { SqlStorageProvider } from '../providers/sql-storage/sql-storage';
+import { TrasladoPage } from '../pages/traslado/traslado';
+import { SeleccionarPersonasPage } from '../pages/seleccionar-personas/seleccionar-personas';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
     AccordionComponent,
     TrasladosListPage,
     UserListPage,
-    ListCuadrillasPage
+    ListCuadrillasPage,
+    TrasladoPage,
+    SeleccionarPersonasPage
   ],
   imports: [
     BrowserModule,
@@ -45,14 +50,18 @@ import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
     AccordionComponent,
     TrasladosListPage,
     UserListPage,
-    ListCuadrillasPage
+    ListCuadrillasPage,
+    TrasladoPage,
+    SeleccionarPersonasPage
 
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    QRScanner
+    QRScanner,
+    SQLite,
+    SqlStorageProvider
   ]
 })
 export class AppModule {}

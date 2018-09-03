@@ -10,10 +10,14 @@ import { QRScanner, QRScannerStatus } from '../../../node_modules/@ionic-native/
 export class EscanerPage {
 
   manual: boolean = false;
-  qr: string;
+  qr: string = '';
   hora: string;
   exist: boolean = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private qrS: QRScanner, private toast: ToastController) {
+  camera: boolean = false;
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    private qrS: QRScanner, 
+    private toast: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -28,11 +32,15 @@ export class EscanerPage {
   openScanner(){
    this.qrS.prepare()
    .then((status: QRScannerStatus) => {
+    this.qrS.show();
+    this.showCamera();
      if (status.authorized){
       let scanSub = this.qrS.scan().subscribe((text: string) => {
-         this.qr = text;
-         this.qrS.hide();
-         scanSub.unsubscribe();
+          this.qr = text;         
+          console.log(this.qr);  
+          this.qrS.hide();         
+          this.hideCamera();          
+          scanSub.unsubscribe();
        });
      } else {
       let toast = this.toast.create({
@@ -45,9 +53,23 @@ export class EscanerPage {
    }).catch((e: any) => console.log('error: ', e));
   }
 
+
   manualScan(){
     this.hora = new Date().toLocaleTimeString();
     this.exist = !this.exist ? true : false;
+  }
+
+  showCamera() {    
+    this.camera = !this.camera ? true : false;
+    (window.document.querySelector('ion-app') as HTMLElement).classList.add('cameraView');
+    
+  }
+
+  hideCamera() { 
+    (window.document.querySelector('ion-app') as HTMLElement).classList.remove('cameraView');
+    this.exist = this.exist ? false : true;     
+    this.hora = new Date().toLocaleTimeString(); 
+    
   }
 
 }
