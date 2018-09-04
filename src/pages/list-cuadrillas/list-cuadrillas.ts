@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ConfirmarTrasladoPage } from '../confirmar-traslado/confirmar-traslado';
 
 /**
  * Generated class for the ListCuadrillasPage page.
@@ -21,6 +22,7 @@ export class ListCuadrillasPage {
   noAsignados: any[];
   filter: boolean = true;
   finalList: any[] = [{}];
+  superv: {};
   personasFilter: string = 'cuadrilla';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.supervisor = this.navParams.data;
@@ -30,16 +32,21 @@ export class ListCuadrillasPage {
     console.log('ionViewDidLoad ListCuadrillasPage');
 
     this.noAsignados = [
-      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false}, 
-      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false},
-      {nombre: 'Aldo Bobadilla', puesto: 'Peon', selected: false},
-      {nombre: 'Oscar Feber', puesto: 'Capataz', selected: false},
-      {nombre: 'Ela Bortito', puesto: 'Peon', selected: false},
-      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false}
+      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false, id: '1'}, 
+      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false, id: '1'},
+      {nombre: 'Aldo Bobadilla', puesto: 'Peon', selected: false, id: '1'},
+      {nombre: 'Oscar Feber', puesto: 'Capataz', selected: false, id: '1'},
+      {nombre: 'Ela Bortito', puesto: 'Peon', selected: false, id: '1'},
+      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false, id: '1'}
     ]
 
     this.list = this.supervisor;
-    console.log(this.list);
+    this.superv = {
+      nombre: this.supervisor.sup,
+      id: this.supervisor.id
+    }
+    this.finalList.push(this.superv);
+    console.log(this.finalList);
   }
 
   filterPersonas(){
@@ -65,5 +72,8 @@ export class ListCuadrillasPage {
     console.log(this.finalList);
   }
 
+  confirmarTraslado(){
+    this.navCtrl.push(ConfirmarTrasladoPage, this.finalList);
+  }
 
 }

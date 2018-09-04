@@ -17,4 +17,5 @@
   <ion-list *ngIf='!filter'>
       <ion-item [class.highlight]="item.selected" *ngFor='let item of list' (click)='itemTapped($event, item)'>{{item.nombre}} - {{item.puesto}}</ion-item>
     </ion-list>
+    <button ion-button color='primary' (click)='confirmarTraslado()' round>Confirmar Traslado</button>
 </ion-content>

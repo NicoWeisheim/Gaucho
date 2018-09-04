@@ -19,6 +19,7 @@ import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
 import { SqlStorageProvider } from '../providers/sql-storage/sql-storage';
 import { TrasladoPage } from '../pages/traslado/traslado';
 import { SeleccionarPersonasPage } from '../pages/seleccionar-personas/seleccionar-personas';
+import { ConfirmarTrasladoPage } from '../pages/confirmar-traslado/confirmar-traslado';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SeleccionarPersonasPage } from '../pages/seleccionar-personas/seleccion
     UserListPage,
     ListCuadrillasPage,
     TrasladoPage,
-    SeleccionarPersonasPage
+    SeleccionarPersonasPage,
+    ConfirmarTrasladoPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { SeleccionarPersonasPage } from '../pages/seleccionar-personas/seleccion
     UserListPage,
     ListCuadrillasPage,
     TrasladoPage,
-    SeleccionarPersonasPage
+    SeleccionarPersonasPage,
+    ConfirmarTrasladoPage
 
   ],
   providers: [

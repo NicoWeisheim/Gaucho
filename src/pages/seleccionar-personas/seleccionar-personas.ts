@@ -9,7 +9,6 @@ import { ListCuadrillasPage } from '../list-cuadrillas/list-cuadrillas';
 })
 export class SeleccionarPersonasPage {
 
-  cabecillas: any[];
   noAsignados: any[];
   personasFilter: string = 'cabecillas';
   list: any[];
@@ -22,34 +21,26 @@ export class SeleccionarPersonasPage {
     console.log('ionViewDidLoad SeleccionarPersonasPage');
 
     this.noAsignados = [
-      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero'}, 
-      {nombre: 'Elsa Queo', puesto: 'Maestranza'},
-      {nombre: 'Aldo Bobadilla', puesto: 'Peon'},
-      {nombre: 'Oscar Feber', puesto: 'Capataz'},
-      {nombre: 'Ela Bortito', puesto: 'Peon'},
-      {nombre: 'Keo Nda', puesto: 'Capataz'}
-    ]
-
-    this.cabecillas = [
-      
-      {id: '1', nombre: 'Nicolas Weisheim' },
-      {id: '2', nombre: 'Carlos Carlanga' },
-      {id: '3', nombre: 'Pepe Pepon' },
-      {id: '4', nombre: 'Oscar Tabarez' }
+      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', id: '2'}, 
+      {nombre: 'Elsa Queo', puesto: 'Maestranza', id: '2'},
+      {nombre: 'Aldo Bobadilla', puesto: 'Peon', id: '2'},
+      {nombre: 'Oscar Feber', puesto: 'Capataz', id: '2'},
+      {nombre: 'Ela Bortito', puesto: 'Peon', id: '2'},
+      {nombre: 'Keo Nda', puesto: 'Capataz', id: '2'}
     ]
     this.cuadrillas = [
-      {sup: 'Jorge Rito', integrantes: [{nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false}, 
-      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false},
-      {nombre: 'Aldo Bobadilla', puesto: 'Capataz', selected: false}],cantPersonas: '3' ,destino: 'Tucuman'},
-      {sup: 'Juan Perez', integrantes: [{nombre: 'Oscar Feber', puesto: 'Capataz', selected: false},
-      {nombre: 'Ela Bortito', puesto: 'Capataz', selected: false},
-      {nombre: 'Keo Nda', puesto: 'Capataz, selected: false'}], destino: 'Chaco',cantPersonas: '3'},
-      {sup: 'Oscar Tabarez', integrantes: [{nombre: 'Fernando Gago', puesto: 'Peon', selected: false},
-      {nombre: 'Ivan Acer', puesto: 'Maestranza', selected: false},
-      {nombre: 'Diosito Borges', puesto: 'Peon', selected: false}], destino: 'San Luis',cantPersonas: '3'},
-      {sup: 'Nicolas Weisheim', integrantes: [{nombre: 'Pepito perez', puesto: 'Cocinero', selected: false},
-      {nombre: 'Kedi Ficil', puesto: 'Cocinero', selected: false},
-      {nombre: 'James Rodriguez', puesto: 'Cocinero', selected: false}], destino: 'Misiones',cantPersonas: '3'}
+      {sup: 'Jorge Rito',id: '1', integrantes: [{nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false, id: '1'}, 
+      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false, id: '1'},
+      {nombre: 'Aldo Bobadilla', puesto: 'Capataz', selected: false, id: '1'}],cantPersonas: '3' ,destino: 'Tucuman'},
+      {sup: 'Juan Perez', id: '1',integrantes: [{nombre: 'Oscar Feber', puesto: 'Capataz', selected: false, id: '1'},
+      {nombre: 'Ela Bortito', puesto: 'Capataz', selected: false, id: '1'},
+      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false, id: '1'}], destino: 'Chaco',cantPersonas: '3'},
+      {sup: 'Oscar Tabarez',id: '1', integrantes: [{nombre: 'Fernando Gago', puesto: 'Peon', selected: false, id: '1'},
+      {nombre: 'Ivan Acer', puesto: 'Maestranza', selected: false, id: '1'},
+      {nombre: 'Diosito Borges', puesto: 'Peon', selected: false, id: '1'}], destino: 'San Luis',cantPersonas: '3'},
+      {sup: 'Nicolas Weisheim', id: '1',integrantes: [{nombre: 'Pepito perez', puesto: 'Cocinero', selected: false, id: '1'},
+      {nombre: 'Kedi Ficil', puesto: 'Cocinero', selected: false, id: '1'},
+      {nombre: 'James Rodriguez', puesto: 'Cocinero', selected: false, id: '1'}], destino: 'Misiones',cantPersonas: '3'}
 
     ]
     
