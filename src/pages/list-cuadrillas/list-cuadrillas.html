@@ -1,21 +1,20 @@
-<ion-header >
-  <ion-navbar color="dark">
-    <button ion-button menuToggle>
-      <ion-icon name="menu" color="primary"></ion-icon>
-    </button>
-    <ion-title color="light">Cuadrillas</ion-title>
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title color="light">Seleccionar Personas</ion-title>
   </ion-navbar>
+    <ion-toolbar>
+      <ion-segment color="secondary" [(ngModel)]="personasFilter" (ionChange)="filterPersonas($event)">
+        <ion-segment-button value="cuadrilla">CUADRILLA</ion-segment-button>
+        <ion-segment-button value="noAsignados">NO ASIGNADOS</ion-segment-button>
+      </ion-segment>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-  <accordion title='Cabecilla: {{cuad.sup}}'  *ngFor='let cuad of cuadrillas'>
-    <h2>Ubicacion Actual: {{cuad.destino}}</h2>
-    <p>Integrantes</p>
-    <ion-row *ngFor='let int of cuad.integrantes'>
-        <ion-col>{{int.nombre}}</ion-col>
-        <ion-col>{{int.puesto}}</ion-col>
-        <ion-col>
-          <button ion-button small color="dark" clear>Mover</button>
-        </ion-col>
-    </ion-row>
-  </accordion>
+  <ion-list *ngIf='filter'>
+    <ion-item class='highlight'>{{supervisor.sup}}</ion-item>
+    <ion-item [class.highlight]="c.selected" *ngFor='let c of supervisor.integrantes' (click)='itemTapped($event, c)'>{{c.nombre}}</ion-item>
+  </ion-list>
+  <ion-list *ngIf='!filter'>
+      <ion-item [class.highlight]="item.selected" *ngFor='let item of list' (click)='itemTapped($event, item)'>{{item.nombre}} - {{item.puesto}}</ion-item>
+    </ion-list>
 </ion-content>

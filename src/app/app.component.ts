@@ -33,7 +33,6 @@ export class MyApp {
       {title: 'Solicitudes', component: ListSolicitudesPage},
       {title: 'Traslados', component: TrasladosListPage},
       {title: 'Usuarios', component: UserListPage},
-      {title: 'Cuadrillas', component: ListCuadrillasPage},
       {title: 'Traslado', component: TrasladoPage}
     ];
 

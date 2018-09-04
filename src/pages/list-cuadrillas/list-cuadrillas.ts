@@ -16,26 +16,54 @@ export class ListCuadrillasPage {
 
   cuadrillas: any[];
   integrantes: any[];
+  supervisor: any[];
+  list: any[];
+  noAsignados: any[];
+  filter: boolean = true;
+  finalList: any[] = [{}];
+  personasFilter: string = 'cuadrilla';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.supervisor = this.navParams.data;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListCuadrillasPage');
-    this.cuadrillas = [
-      {sup: 'Jorge Rito', integrantes: [{nombre: 'Juan Carlos Peron', puesto: 'Cocinero'}, 
-      {nombre: 'Elsa Queo', puesto: 'Maestranza'},
-      {nombre: 'Aldo Bobadilla', puesto: 'Capataz'}], destino: 'Tucuman'},
-      {sup: 'Juan Perez', integrantes: [{nombre: 'Oscar Feber', puesto: 'Capataz'},
-      {nombre: 'Ela Bortito', puesto: 'Capataz'},
-      {nombre: 'Keo Nda', puesto: 'Capataz'}], destino: 'Chaco'},
-      {sup: 'Oscar Tabarez', integrantes: [{nombre: 'Fernando Gago', puesto: 'Peon'},
-      {nombre: 'Ivan Acer', puesto: 'Maestranza'},
-      {nombre: 'Diosito Borges', puesto: 'Peon'}], destino: 'San Luis'},
-      {sup: 'Nicolas Weisheim', integrantes: [{nombre: 'Pepito perez', puesto: 'Cocinero'},
-      {nombre: 'Kedi Ficil', puesto: 'Cocinero'},
-      {nombre: 'James Rodriguez', puesto: 'Cocinero'}], destino: 'Misiones'}
 
+    this.noAsignados = [
+      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false}, 
+      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false},
+      {nombre: 'Aldo Bobadilla', puesto: 'Peon', selected: false},
+      {nombre: 'Oscar Feber', puesto: 'Capataz', selected: false},
+      {nombre: 'Ela Bortito', puesto: 'Peon', selected: false},
+      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false}
     ]
+
+    this.list = this.supervisor;
+    console.log(this.list);
   }
+
+  filterPersonas(){
+    if(this.personasFilter === 'cuadrilla'){
+      this.list = this.supervisor;
+      this.filter = true;
+    } else {
+      this.list = this.noAsignados;
+      this.filter = false;
+    };
+  }
+
+  itemTapped($event, item){
+    if(this.finalList.indexOf(item) === -1){
+      this.finalList.push(item);
+      item.selected = true;
+    } 
+    else {
+        this.finalList.splice(this.finalList.indexOf(item), 1);
+        item.selected = false;
+    }
+    
+    console.log(this.finalList);
+  }
+
 
 }
