@@ -32,12 +32,12 @@ export class ListCuadrillasPage {
     console.log('ionViewDidLoad ListCuadrillasPage');
 
     this.noAsignados = [
-      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false, id: '1'}, 
-      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false, id: '1'},
-      {nombre: 'Aldo Bobadilla', puesto: 'Peon', selected: false, id: '1'},
-      {nombre: 'Oscar Feber', puesto: 'Capataz', selected: false, id: '1'},
-      {nombre: 'Ela Bortito', puesto: 'Peon', selected: false, id: '1'},
-      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false, id: '1'}
+      {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', selected: false, id: '2'}, 
+      {nombre: 'Elsa Queo', puesto: 'Maestranza', selected: false, id: '2'},
+      {nombre: 'Aldo Bobadilla', puesto: 'Peon', selected: false, id: '2'},
+      {nombre: 'Oscar Feber', puesto: 'Capataz', selected: false, id: '2'},
+      {nombre: 'Ela Bortito', puesto: 'Peon', selected: false, id: '2'},
+      {nombre: 'Keo Nda', puesto: 'Capataz', selected: false, id: '2'}
     ]
 
     this.list = this.supervisor;

@@ -1,24 +1,30 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the ConfirmarTrasladoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @Component({
   selector: 'page-confirmar-traslado',
   templateUrl: 'confirmar-traslado.html',
 })
 export class ConfirmarTrasladoPage {
 
+  param: any[];
+  cabecillas: any[] = [{}];
+  noAsign: any[] = [{}];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.param = this.navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfirmarTrasladoPage');
+    console.log(this.param);
+
+    this.param.forEach(element => {
+      if(element.id === '1'){
+        this.cabecillas.push(element)
+      } else {
+        this.noAsign.push(element);
+      }
+      
+    });
   }
 
 }

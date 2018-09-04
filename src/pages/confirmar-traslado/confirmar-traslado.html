@@ -6,10 +6,10 @@
 <ion-content>
   <ion-list>
     <ion-list-header>CABECILLAS</ion-list-header>
-    <ion-item></ion-item>
+    <ion-item *ngFor='let c of cabecillas'>{{c.nombre}}</ion-item>
   </ion-list>
   <ion-list>
     <ion-list-header>NO ASIGNADOS</ion-list-header>
-    <ion-item></ion-item>
+    <ion-item *ngFor='let n of noAsign'>{{n.nombre}} - {{n.puesto}}</ion-item>
   </ion-list>
 </ion-content>
