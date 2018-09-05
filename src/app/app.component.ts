@@ -4,14 +4,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
 import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
 import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
 import { UserListPage } from '../pages/user-list/user-list';
-import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
 import { TrasladoPage } from '../pages/traslado/traslado';
+import {SqlStorageProvider} from '../providers/sql-storage/sql-storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +22,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public sqlStorage: SqlStorageProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -44,6 +43,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.sqlStorage.initializeDataBase();
     });
   }
 
