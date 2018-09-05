@@ -14,11 +14,13 @@ export class SeleccionarPersonasPage {
   list: any[];
   cuadrillas: any[];
   filter: boolean = true;
+  datos: any[] = [{}];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.datos = this.navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SeleccionarPersonasPage');
+    console.log(this.datos);
 
     this.noAsignados = [
       {nombre: 'Juan Carlos Peron', puesto: 'Cocinero', id: '2'}, 
@@ -59,7 +61,7 @@ export class SeleccionarPersonasPage {
   }
 
   itemTapped($event, cuad){
-    this.navCtrl.push(ListCuadrillasPage, cuad);
+    this.navCtrl.push(ListCuadrillasPage, [cuad, this.datos]);
   }
 
 }

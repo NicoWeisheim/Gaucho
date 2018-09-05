@@ -1,9 +1,12 @@
 page-confirmar-traslado {
+    background-color: #b6b5b5;
 
-    
+
+    ion-item-divider{
+        margin-top: 16px;
+        min-height: 1px!important;
+      }
 
 }
 
-ion-list-header{
-    background-color: #32db64;
-}
+

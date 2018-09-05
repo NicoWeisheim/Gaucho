@@ -57,6 +57,7 @@ export class EscanerPage {
   manualScan(){
     this.hora = new Date().toLocaleTimeString();
     this.exist = !this.exist ? true : false;
+    this.camera = !this.camera ? true : false;
   }
 
   showCamera() {    

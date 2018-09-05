@@ -15,14 +15,15 @@ import { ConfirmarTrasladoPage } from '../confirmar-traslado/confirmar-traslado'
 })
 export class ListCuadrillasPage {
 
-  cuadrillas: any[];
-  integrantes: any[];
-  supervisor: any[];
-  list: any[];
-  noAsignados: any[];
+  cuadrillas: any[] = [{}];
+  integrantes: any[]= [{}];
+  supervisor: any[]= [{}];
+  list: any[] = [{}];
+  noAsignados: any[]= [{}];
   filter: boolean = true;
   finalList: any[] = [{}];
   superv: {};
+  dato: any[] = [{}];
   personasFilter: string = 'cuadrilla';
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.supervisor = this.navParams.data;
@@ -39,19 +40,20 @@ export class ListCuadrillasPage {
       {nombre: 'Ela Bortito', puesto: 'Peon', selected: false, id: '2'},
       {nombre: 'Keo Nda', puesto: 'Capataz', selected: false, id: '2'}
     ]
-
-    this.list = this.supervisor;
+    
+    this.list = this.supervisor[0];
     this.superv = {
-      nombre: this.supervisor.sup,
-      id: this.supervisor.id
+      nombre: this.supervisor[0].sup,
+      id: this.supervisor[0].id
     }
+    this.dato = this.supervisor[1];
     this.finalList.push(this.superv);
-    console.log(this.finalList);
+    console.log(this.list);
   }
 
   filterPersonas(){
     if(this.personasFilter === 'cuadrilla'){
-      this.list = this.supervisor;
+      this.list = this.supervisor[0];
       this.filter = true;
     } else {
       this.list = this.noAsignados;
@@ -73,7 +75,7 @@ export class ListCuadrillasPage {
   }
 
   confirmarTraslado(){
-    this.navCtrl.push(ConfirmarTrasladoPage, this.finalList);
+    this.navCtrl.push(ConfirmarTrasladoPage, [this.finalList, this.dato]);
   }
 
 }

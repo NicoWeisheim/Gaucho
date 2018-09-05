@@ -15,6 +15,7 @@ export class TrasladoPage {
   supOri: string;
   supDes: string;
   fechaTraslado: string;
+  datos: any[] = [{}];
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -36,7 +37,15 @@ export class TrasladoPage {
   }
 
   seleccionarPersonas(){
-    this.navCtrl.push(SeleccionarPersonasPage);
+    this.datos = [
+      {origen: this.origen,
+        supOri: this.supOri,
+        fecha: this.fechaTraslado,
+        destino: this.destino,
+        supDes: this.supDes
+      }
+    ];
+    this.navCtrl.push(SeleccionarPersonasPage, this.datos);
   }
 
 }

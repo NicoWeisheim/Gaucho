@@ -11,8 +11,8 @@
 </ion-header>
 <ion-content>
   <ion-list *ngIf='filter'>
-    <ion-item class='highlight'>{{supervisor.sup}}</ion-item>
-    <ion-item [class.highlight]="c.selected" *ngFor='let c of supervisor.integrantes' (click)='itemTapped($event, c)'>{{c.nombre}}</ion-item>
+    <ion-item class='highlight'>{{list.sup}}</ion-item>
+    <ion-item [class.highlight]="c.selected" *ngFor='let c of list.integrantes' (click)='itemTapped($event, c)'>{{c.nombre}}</ion-item>
   </ion-list>
   <ion-list *ngIf='!filter'>
       <ion-item [class.highlight]="item.selected" *ngFor='let item of list' (click)='itemTapped($event, item)'>{{item.nombre}} - {{item.puesto}}</ion-item>
