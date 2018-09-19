@@ -4,21 +4,20 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngIf='dato'>
-    <ion-item>Origen: {{dato[0].origen}}</ion-item>
-    <ion-item>Supervisor Origen: {{dato[0].supOri}}</ion-item>
-    <ion-item>Fecha: {{dato[0].fecha}}</ion-item>
-    <ion-item>Destino: {{dato[0].destino}}</ion-item>
-    <ion-item>Supervisor Destino: {{dato[0].supDes}}</ion-item>
+  <ion-list *ngIf='datos'>
+    <ion-item>Origen: {{origen.nombre_campo}} Planta {{origen.numero_planta}}</ion-item>
+    <ion-item>Supervisor Origen: {{supOri.nombre}}</ion-item>
+    <ion-item>Fecha: {{datos.fecha}}</ion-item>
+    <ion-item>Destino: {{destino.nombre_campo}} Planta {{destino.numero_planta}}</ion-item>
+    <ion-item>Supervisor Destino: {{supDes.nombre}}</ion-item>
   </ion-list>
-  <ion-list no-lines>
-    <ion-item color='secondary'>CABECILLAS</ion-item>
-    <ion-item *ngFor='let c of cabecillas' color='#FFFFFF'>{{c.nombre}}<ion-item-divider color='grey'></ion-item-divider></ion-item>
-    <ion-item-divider color='grey'></ion-item-divider>
+  <ion-list>
+    <ion-item color='secondary'>TRABAJADORES</ion-item>
+    <ion-item *ngFor='let c of cabecillas' color='#FFFFFF'>{{c.nombre}}</ion-item>
   </ion-list>
-  <ion-list no-lines>
+  <!-- <ion-list no-lines>
     <ion-item color='secondary'>NO ASIGNADOS</ion-item>
     <ion-item *ngFor='let n of noAsign' color='#FFFFFF'>{{n.nombre}} - {{n.puesto}}<ion-item-divider color='grey'></ion-item-divider></ion-item>  
-  </ion-list>
-  <button ion-button full round>Confirmar Traslado</button>
+  </ion-list> -->
+  <button ion-button full round (click)='confirmarTraslado()'>Confirmar Traslado</button>
 </ion-content>

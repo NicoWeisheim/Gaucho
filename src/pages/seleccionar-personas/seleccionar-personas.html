@@ -11,14 +11,14 @@
 </ion-header>
 <ion-content>
   <ion-list *ngIf='filter'>
-    <ion-item *ngFor='let cuad of list' (click)='itemTapped($event, cuad)'>
-      {{cuad.sup}}
-      <ion-badge item-end>{{cuad.cantPersonas}}</ion-badge>
+    <ion-item *ngFor='let cuad of list' (click)='itemTapped($event, cuad.cuadrilla_id)'>
+      {{cuad.nombre}}
+      <!-- <ion-badge item-end>{{cuad.cantPersonas}}</ion-badge> -->
     </ion-item>
   </ion-list>
   <ion-list *ngIf='!filter'>
       <ion-item *ngFor='let cuad of list'>
-        {{cuad.nombre}} - {{cuad.puesto}}
+        {{cuad.nombre}}
       </ion-item>
     </ion-list>
 </ion-content>

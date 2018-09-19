@@ -11,11 +11,15 @@
 </ion-header>
 <ion-content>
   <ion-list *ngIf='filter'>
-    <ion-item class='highlight'>{{list.sup}}</ion-item>
-    <ion-item [class.highlight]="c.selected" *ngFor='let c of list.integrantes' (click)='itemTapped($event, c)'>{{c.nombre}}</ion-item>
+    <ion-item [class.highlight]="c.selected" *ngFor='let c of list' (click)='itemTapped($event, c)'>{{c.nombre}}</ion-item>
   </ion-list>
   <ion-list *ngIf='!filter'>
-      <ion-item [class.highlight]="item.selected" *ngFor='let item of list' (click)='itemTapped($event, item)'>{{item.nombre}} - {{item.puesto}}</ion-item>
-    </ion-list>
+    <ion-item [class.highlight]="item.selected" *ngFor='let item of list' (click)='itemTapped($event, item)'>{{item.nombre}}</ion-item>
+  </ion-list>
+  <ion-list *ngIf='noSeleccionables'>
+    <ion-item color='secondary'>NO SELECCIONABLES</ion-item>
+    <ion-item *ngFor='let c of noSeleccionables' color='#FFFFFF'>{{c.nombre}}</ion-item>
+  </ion-list>
+ 
     <button ion-button color='primary' (click)='confirmarTraslado()' round>Confirmar Traslado</button>
 </ion-content>

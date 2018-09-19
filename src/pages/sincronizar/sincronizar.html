@@ -1,0 +1,22 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Sincronizar</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>Traslados sin sincronizar: 
+      <ion-badge item-end>{{cantTraslados}}</ion-badge>
+    </ion-item>
+    <ion-item>Solicitudes sin sincronizar: 
+      <ion-badge item-end>{{cantSolicitudes}}</ion-badge>
+    </ion-item>
+    <ion-item>Asistencias sin sincronizar: 
+      <ion-badge item-end>{{cantAsist}}</ion-badge>
+    </ion-item>
+  </ion-list>
+  <button ion-button full round (click)='sincronizar()'>Sincronizar</button>
+</ion-content>

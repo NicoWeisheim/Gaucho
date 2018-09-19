@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color='dark'>
+    <ion-title color="light">Escanner QR</ion-title>
+  </ion-navbar>
+</ion-header>  
+<ion-content>
+  <ion-row *ngIf="exist">
+    <h1>Usted a escaneado a</h1>
+  </ion-row>
+  <ion-row *ngIf="exist"> 
+    <img class="circle-pic" src="../../assets/imgs/peon.jpg">
+  </ion-row>
+  <ion-row *ngIf="exist">
+    <h3>{{trabajador.nombre}}</h3>
+  </ion-row>
+  <ion-row *ngIf="exist">
+    <h3>{{hora}}</h3>
+  </ion-row>
+  <ion-row *ngIf="exist">
+    <ion-col>
+      <button ion-button full color="secondary" (click)='ingreso()'>Ingreso</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="danger" (click)='egreso()'>Egreso</button>
+    </ion-col>
+  </ion-row>
+</ion-content>

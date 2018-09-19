@@ -11,7 +11,7 @@
     <ion-item>
       <ion-label>Origen: </ion-label>
       <ion-select [(ngModel)]="origen">
-        <ion-option *ngFor='let lu of lugares' value="{{lu.descripcion}}">{{lu.descripcion}}</ion-option>
+        <ion-option *ngFor='let lu of campos' value="{{lu.id}}">{{lu.nombre_campo}} Planta {{lu.numero_planta}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -19,7 +19,7 @@
     <ion-item>
       <ion-label>Supervisor Origen: </ion-label>
       <ion-select [(ngModel)]="supOri">
-        <ion-option *ngFor='let sup of supervisores' value="{{sup.nombre}}">{{sup.nombre}}</ion-option>
+        <ion-option *ngFor='let sup of supervisores' value="{{sup.id}}">{{sup.nombre}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -31,7 +31,7 @@
     <ion-item>
       <ion-label>Destino: </ion-label>
       <ion-select [(ngModel)]="destino">
-        <ion-option *ngFor='let lu of lugares' value="{{lu.descripcion}}">{{lu.descripcion}}</ion-option>
+        <ion-option *ngFor='let lu of campos' value="{{lu.id}}">{{lu.nombre_campo}} Planta {{lu.numero_planta}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
@@ -39,7 +39,7 @@
     <ion-item>
       <ion-label>Supervisor Destino: </ion-label>
       <ion-select [(ngModel)]="supDes">
-        <ion-option *ngFor='let sup of supervisores' value="{{sup.nombre}}">{{sup.nombre}}</ion-option>
+        <ion-option *ngFor='let sup of supervisores' value="{{sup.id}}">{{sup.nombre}}</ion-option>
       </ion-select>
     </ion-item>
   </ion-list> 

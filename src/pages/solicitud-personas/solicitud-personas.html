@@ -1,0 +1,35 @@
+<ion-header >
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu" color="primary"></ion-icon>
+    </button>
+    <ion-title color="light">Solicitud de Personas</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Cantidad de Personas: </ion-label>
+      <ion-input type="number" [(ngModel)]="cantidad"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-item>
+    <ion-label>Dia Ingreso</ion-label>
+    <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="diaIngreso"></ion-datetime>
+  </ion-item>
+  <ion-list>
+    <ion-item>
+      <ion-label>Destino: </ion-label>
+      <ion-select [(ngModel)]="destino">
+        <ion-option *ngFor='let lu of campos' value="{{lu.id}}">{{lu.nombre_campo}} Planta {{lu.numero_planta}}</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item >
+      <ion-label>Observaciones </ion-label>
+      <ion-textarea [(ngModel)]="observaciones"></ion-textarea>
+    </ion-item>
+  </ion-list> 
+  <button ion-button block color='primary' (click)="confirmarSolicitud()">Confirmar Solicitud</button>
+</ion-content>

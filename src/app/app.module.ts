@@ -4,38 +4,41 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import {SQLite} from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
-import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
 import {QRScanner} from '@ionic-native/qr-scanner';
 import { AccordionComponent } from '../components/accordion/accordion';
-import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
-import { UserListPage } from '../pages/user-list/user-list';
 import { ListCuadrillasPage } from '../pages/list-cuadrillas/list-cuadrillas';
 import { SqlStorageProvider } from '../providers/sql-storage/sql-storage';
 import { TrasladoPage } from '../pages/traslado/traslado';
 import { SeleccionarPersonasPage } from '../pages/seleccionar-personas/seleccionar-personas';
 import { ConfirmarTrasladoPage } from '../pages/confirmar-traslado/confirmar-traslado';
+import {Geolocation} from "@ionic-native/geolocation";
+import { SolicitudPersonasPage } from '../pages/solicitud-personas/solicitud-personas';
+import { EscanerLogPage } from '../pages/escaner-log/escaner-log';
+import { LogsListPage } from '../pages/logs-list/logs-list';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+import { SincronizarPage } from '../pages/sincronizar/sincronizar';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
     WelcomePage,
     EscanerPage,
-    ListSolicitudesPage,
     AccordionComponent,
-    TrasladosListPage,
-    UserListPage,
     ListCuadrillasPage,
     TrasladoPage,
     SeleccionarPersonasPage,
-    ConfirmarTrasladoPage
+    ConfirmarTrasladoPage,
+    SolicitudPersonasPage,
+    EscanerLogPage,
+    LogsListPage,
+    SincronizarPage
   ],
   imports: [
     BrowserModule,
@@ -45,17 +48,17 @@ import { ConfirmarTrasladoPage } from '../pages/confirmar-traslado/confirmar-tra
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     WelcomePage,
     EscanerPage,
-    ListSolicitudesPage,
     AccordionComponent,
-    TrasladosListPage,
-    UserListPage,
     ListCuadrillasPage,
     TrasladoPage,
     SeleccionarPersonasPage,
-    ConfirmarTrasladoPage
+    ConfirmarTrasladoPage,
+    SolicitudPersonasPage,
+    EscanerLogPage,
+    LogsListPage,
+    SincronizarPage
 
   ],
   providers: [
@@ -64,7 +67,10 @@ import { ConfirmarTrasladoPage } from '../pages/confirmar-traslado/confirmar-tra
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     QRScanner,
     SQLite,
-    SqlStorageProvider
+    SqlStorageProvider,
+    Geolocation,
+    File,
+    FileOpener
   ]
 })
 export class AppModule {}

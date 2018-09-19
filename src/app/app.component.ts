@@ -6,11 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
-import { ListSolicitudesPage } from '../pages/list-solicitudes/list-solicitudes';
-import { TrasladosListPage } from '../pages/traslados-list/traslados-list';
-import { UserListPage } from '../pages/user-list/user-list';
 import { TrasladoPage } from '../pages/traslado/traslado';
 import {SqlStorageProvider} from '../providers/sql-storage/sql-storage';
+import { SolicitudPersonasPage } from '../pages/solicitud-personas/solicitud-personas';
+import { LogsListPage } from '../pages/logs-list/logs-list';
+import { SincronizarPage } from '../pages/sincronizar/sincronizar';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,10 +29,10 @@ export class MyApp {
     this.pages = [
       { title: 'Welcome', component: WelcomePage },
       {title: 'Escaner QR', component: EscanerPage},
-      {title: 'Solicitudes', component: ListSolicitudesPage},
-      {title: 'Traslados', component: TrasladosListPage},
-      {title: 'Usuarios', component: UserListPage},
-      {title: 'Traslado', component: TrasladoPage}
+      {title: 'Traslado', component: TrasladoPage},
+      {title: 'Solicitud de Personas', component: SolicitudPersonasPage},
+      {title: 'Imprimir Asistencia', component: LogsListPage},
+      {title: 'Sincronizar', component: SincronizarPage}
     ];
 
   }

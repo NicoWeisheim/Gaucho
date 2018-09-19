@@ -1,51 +1,85 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController, DateTime } from 'ionic-angular';
 import { SeleccionarPersonasPage } from '../seleccionar-personas/seleccionar-personas';
+import { SqlStorageProvider } from '../../providers/sql-storage/sql-storage';
+
+interface campos{
+  id: number,
+  nombre_campo: string,
+  numero_planta: number
+}
+
+interface supervisores{
+  id: number,
+  nombre: string
+}
+
+interface datos {
+  origen: string,
+  supOri: string,
+  fecha: string,
+  destino: string,
+  supDes: string
+}
 
 @Component({
   selector: 'page-traslado',
   templateUrl: 'traslado.html',
 })
+
+
+
 export class TrasladoPage {
 
-  lugares: any[];
-  supervisores: any[];
-  origen: string;
-  destino: string;
-  supOri: string;
-  supDes: string;
-  fechaTraslado: string;
-  datos: any[] = [{}];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  supervisores: supervisores[];
+  origen: string = '';
+  destino: string = '';
+  supOri: string = '';
+  supDes: string = '';
+  fechaTraslado: string = '';
+  datos: datos ;
+  public campos: campos[];
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public sql: SqlStorageProvider,
+    private alertCtrl: AlertController) {
+    this.sql.getCampos().then((data: campos[]) => this.campos = data);
+    this.sql.getSupervisores().then((data: supervisores[]) => {this.supervisores = data;});
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TrasladoPage');
-    this.lugares = [
-      {id: '1', descripcion: 'San Luis'},
-      {id: '2', descripcion: 'Rosario'},
-      {id: '3', descripcion: 'Cordoba'},
-      {id: '4', descripcion: 'Chaco'},
-    ];
-
-    this.supervisores =[
-      {id: '1', nombre: 'Nicolas Weisheim' },
-      {id: '2', nombre: 'Carlos Carlanga' },
-      {id: '3', nombre: 'Pepe Pepon' },
-      {id: '4', nombre: 'Oscar Tabarez' }
-    ]
   }
 
   seleccionarPersonas(){
-    this.datos = [
+    this.datos = 
       {origen: this.origen,
         supOri: this.supOri,
         fecha: this.fechaTraslado,
         destino: this.destino,
         supDes: this.supDes
       }
-    ];
-    this.navCtrl.push(SeleccionarPersonasPage, this.datos);
+    ;
+     if(this.origen === '' || this.destino === '' || this.fechaTraslado === '' || this.supOri === '' || this.supDes === ''){
+      this.presentAlert('Error', 'Hay uno o mas campos vacios');
+    }  else {
+      if(this.origen === this.destino){
+      this.presentAlert('Error', 'El origen y el destino no pueden ser el mismo');
+    }
+    else {
+      this.navCtrl.push(SeleccionarPersonasPage, this.datos);
+    }
+      
+    }
+    
+  }
+
+  presentAlert(title, subtitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subtitle,
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 
 }
