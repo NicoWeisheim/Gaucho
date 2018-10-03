@@ -1,12 +1,12 @@
 <ion-menu [content]="content">
   <ion-header class="head">
-    <h1 id="nombre">JUAN PEREZ</h1>
-    <p>juanperez@asd.com</p>
+    <h1 *ngIf='logged' style='position: absolute; top: 30px;font-weight: bold' id="nombre">{{nombre}}</h1>
+    <p *ngIf='logged' style='position: absolute; top: 60px; font-weight: bold'>{{mail}}</p>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      <button menuClose style='font-weight: bold' ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
     </ion-list>

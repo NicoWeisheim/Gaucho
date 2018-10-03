@@ -42,7 +42,16 @@ interface datos {
   destino: string,
   supDes: string
 }
+interface listNoAsi{
+  id: number,
+  nombre: string,
+  puesto: string
+}
 
+interface puestos{
+  id: number,
+  nombre: string
+}
 
 @Component({
   selector: 'page-list-cuadrillas',
@@ -100,6 +109,11 @@ export class ListCuadrillasPage {
   destino: '',
   supDes: ''
   };
+  listNoAsi: listNoAsi[] = [{
+    id: 0,
+    nombre: '',
+    puesto: ''
+  }];
   personasFilter: string = 'cuadrilla';
   seleccionable: boolean = false;
   constructor(public navCtrl: NavController, 
@@ -114,36 +128,6 @@ export class ListCuadrillasPage {
       content: 'Getting data...'
     });
     loading.present().then(() => {
-      
-      // this.sql.getTrabajadoresByCuadrilla(this.supervisor[0]).then((data: trabajadores[]) => 
-      // {
-      //   let j = 0;
-      //   let h = 0;
-
-      //   for(let i = 0; i< data.length; i++){
-      //     this.sql.getGrupoTrasladosByTrabajador(data[i].id).then((res: grupo_traslado[]) => 
-      //     {
-      //       if(res[res.length -1].id === 0){
-      //         this.integrantes[j] = data[i];
-      //           j++;
-      //       } else {
-      //         this.sql.getTrasladosById(res[res.length -1].id_traslado).then((resp: traslados) => {
-      //           if(resp.id_campo_destino === this.supervisor[1].origen){
-                  
-      //             this.integrantes[j] = data[i];
-      //             j++;
-                  
-      //           } else {
-                  
-      //             this.noSeleccionables[h] = data[i];
-      //             h++;
-      //           }
-      //         })
-      //       }
-      //     })
-      //   }
-      // this.list = this.integrantes;}
-      //);
       this.integrantes.pop();
       this.noAsignados.pop();
       this.sql.getIntegrantesCuadrilla(this.supervisor[0]).then((data: trabajadores[]) => {return data})
@@ -222,6 +206,14 @@ export class ListCuadrillasPage {
       this.list = this.integrantes;
       this.filter = true;
     } else {
+      for(let i = 0; i < this.noAsignados.length; i++){
+        this.sql.getPuestosById(this.noAsignados[i].puesto_id).then((data: puestos) => {return data})
+        .then((data) => {
+          this.listNoAsi[i].id = this.noAsignados[i].id;
+          this.listNoAsi[i].nombre = this.noAsignados[i].nombre;
+          this.listNoAsi[i].puesto = data.nombre;
+        })
+      }
       this.list = this.noAsignados;
       this.filter = false;
     };

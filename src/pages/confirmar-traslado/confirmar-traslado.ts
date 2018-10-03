@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { SqlStorageProvider } from '../../providers/sql-storage/sql-storage';
-import { WelcomePage } from '../welcome/welcome';
+import { TrasladoPage } from '../traslado/traslado';
 
 interface campos{
   id: number,
@@ -9,7 +9,7 @@ interface campos{
   numero_planta: number
 }
 
-interface supervisores{
+interface usuarios{
   id: number,
   nombre: string
 }
@@ -40,6 +40,17 @@ interface datos {
   fecha: string,
   destino: string,
   supDes: string
+}
+
+interface listNoAsi{
+  id: number,
+  nombre: string,
+  puesto: string
+}
+
+interface puestos{
+  id: number,
+  nombre: string
 }
 
 @Component({
@@ -73,7 +84,7 @@ export class ConfirmarTrasladoPage {
   destino: '',
   supDes: ''
   };
-  supOri:  supervisores={
+  supOri:  usuarios={
     id: 0,
     nombre: ''
   };
@@ -82,7 +93,7 @@ export class ConfirmarTrasladoPage {
     nombre_campo: '',
     numero_planta: 0
   };
-  supDes:  supervisores={
+  supDes:  usuarios={
     id: 0,
     nombre: ''
   };
@@ -92,7 +103,11 @@ export class ConfirmarTrasladoPage {
     numero_planta: 0
   };
 
-
+  listNoAsi: listNoAsi[] = [{
+    id: 0,
+    nombre: '',
+    puesto: ''
+  }];
   fecha: string = '';
   constructor(public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -100,6 +115,9 @@ export class ConfirmarTrasladoPage {
     private loadingController: LoadingController,
     private toastCtrl: ToastController) {
     this.parame = this.navParams.data;
+    let g = 0;
+    let h = 0;
+  
     this.param = this.parame[0];
     this.datos = this.parame[1];
     console.log(this.cabecillas);
@@ -108,12 +126,28 @@ export class ConfirmarTrasladoPage {
       content: 'Getting data...'
     });
     loading.present().then(() => {
-      this.sql.getSupervisoresById(this.datos.supOri).then((data: supervisores) => this.supOri = data);
+      this.sql.getUsuarioById(this.datos.supOri).then((data: usuarios) => {this.supOri = data; console.log(this.supOri)});
       this.sql.getCamposById(this.datos.origen).then((data: campos) => this.origen = data);
-      this.sql.getSupervisoresById(this.datos.supDes).then((data: supervisores) => this.supDes = data);
+      this.sql.getUsuarioById(this.datos.supDes).then((data: usuarios) => {this.supDes = data; console.log(this.supDes)});
       this.sql.getCamposById(this.datos.destino).then((data: campos) => this.destino = data);
       for(let i = 0; i < this.param.length; i++){
-        this.sql.getTrabajadorById(this.param[i]).then((data: trabajadores)=> this.cabecillas[i] = data);
+        console.log(this.param[i]);
+        this.sql.getTrabajadorById(this.param[i]).then((data: trabajadores)=> {
+          console.log(data);
+          if(data.puesto_id === 6 || data.puesto_id === 7){
+            this.sql.getPuestosById(data.puesto_id).then((res: puestos) => {return res})
+            .then((res) => {
+              this.listNoAsi[g].nombre = data.nombre;
+              this.listNoAsi[g].id = data.id;
+              this.listNoAsi[g].puesto = res.nombre;
+              g++;
+            })
+          }
+          else {
+            this.cabecillas[h] = data;
+            h++;
+          }
+        });
       }
       this.fecha = this.datos.fecha
       loading.dismiss();
@@ -127,7 +161,12 @@ export class ConfirmarTrasladoPage {
   confirmarTraslado(){
     let hoy = new Date();
     let fecha = hoy.getDate().toString().concat('/').concat(hoy.getMonth().toString()).concat('/').concat(hoy.getFullYear().toString());
-    this.sql.postTraslados(this.supOri.id, this.supDes.id, this.origen.id, this.destino.id, this.fecha, this.cabecillas[0].cuadrilla_id);
+    if(this.cabecillas.length < 1){
+      this.sql.postTraslados(this.supOri.id, this.supDes.id, this.origen.id, this.destino.id, this.fecha, 0);
+    }else {
+      this.sql.postTraslados(this.supOri.id, this.supDes.id, this.origen.id, this.destino.id, this.fecha, this.cabecillas[0].cuadrilla_id);
+    }
+    
     this.sql.getTraslados().then((data :traslados[]) => {
       console.log(data);
       for(let i = 0; i<this.param.length;i++){
@@ -135,7 +174,7 @@ export class ConfirmarTrasladoPage {
       };
       this.sql.getGrupoTraslados();
       this.presentToast();
-      this.navCtrl.setRoot(WelcomePage);
+      this.navCtrl.setRoot(TrasladoPage);
     })
     
   }

@@ -1,13 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import {HttpModule} from '@angular/http'
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import {SQLite} from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { WelcomePage } from '../pages/welcome/welcome';
 import { EscanerPage } from '../pages/escaner/escaner';
 import {QRScanner} from '@ionic-native/qr-scanner';
 import { AccordionComponent } from '../components/accordion/accordion';
@@ -23,12 +22,14 @@ import { LogsListPage } from '../pages/logs-list/logs-list';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 import { SincronizarPage } from '../pages/sincronizar/sincronizar';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { HTTP } from '@ionic-native/http';
+import { FileTransfer } from '@ionic-native/file-transfer';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    WelcomePage,
     EscanerPage,
     AccordionComponent,
     ListCuadrillasPage,
@@ -43,12 +44,12 @@ import { SincronizarPage } from '../pages/sincronizar/sincronizar';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    WelcomePage,
     EscanerPage,
     AccordionComponent,
     ListCuadrillasPage,
@@ -70,7 +71,11 @@ import { SincronizarPage } from '../pages/sincronizar/sincronizar';
     SqlStorageProvider,
     Geolocation,
     File,
-    FileOpener
+    FileOpener,
+    NativeStorage,
+    HTTP,
+    File,
+    FileTransfer
   ]
 })
 export class AppModule {}

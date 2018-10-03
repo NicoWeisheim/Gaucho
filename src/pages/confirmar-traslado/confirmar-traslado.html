@@ -3,21 +3,46 @@
     <ion-title color="light">Confirmar Traslado</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
-  <ion-list *ngIf='datos'>
-    <ion-item>Origen: {{origen.nombre_campo}} Planta {{origen.numero_planta}}</ion-item>
-    <ion-item>Supervisor Origen: {{supOri.nombre}}</ion-item>
-    <ion-item>Fecha: {{datos.fecha}}</ion-item>
-    <ion-item>Destino: {{destino.nombre_campo}} Planta {{destino.numero_planta}}</ion-item>
-    <ion-item>Supervisor Destino: {{supDes.nombre}}</ion-item>
+<ion-content style="background-color:lightgrey">
+   <ion-list *ngIf='datos'>
+    <!--<div style="padding-left: 9% ; padding-top: 5px; width: 300px">
+      <div style="text-align: center;  width: 300px;">
+        <p class="a">ORIGEN: {{origen.nombre_campo}} Planta {{origen.numero_planta}}</p>
+      </div>
+    </div> -->
+    <ion-item>ORIGEN: {{origen.nombre_campo}} Planta {{origen.numero_planta}}</ion-item>
+    <ion-item>SUPERVISOR ORIGEN: {{supOri.nombre}}</ion-item>
+    <ion-item>FECHA: {{datos.fecha}}</ion-item>
+    <ion-item>DESTINO: {{destino.nombre_campo}} Planta {{destino.numero_planta}}</ion-item>
+    <ion-item>SUPERVISOR DESTINO: {{supDes.nombre}}</ion-item>
+    <!-- <div style="padding-left: 9% ; padding-top: 5px; width: 300px">
+      <div style="text-align: center;  width: 300px;">
+        <p class="a">SUPERVISOR ORIGEN: {{supOri.nombre}}</p>
+      </div>
+    </div> -->
+    <!-- <div style="padding-left: 9% ; padding-top: 5px; width: 300px">
+      <div style="text-align: center;  width: 300px;;">
+        <p class="a">FECHA: {{datos.fecha}}</p>
+      </div>
+    </div>
+    <div style="padding-left: 9% ; padding-top: 5px;  width: 300px">
+      <div style="text-align: center;  width: 300px; ">
+        <p class="a">DESTINO: {{destino.nombre_campo}} Planta {{destino.numero_planta}}</p>
+      </div>
+    </div>
+    <div style="padding-left: 9% ; padding-top: 5px;  width: 300px">
+      <div style="text-align: center; width: 300px;">
+        <p class="a">SUPERVISOR DESTINO: {{supDes.nombre}}</p>
+      </div>
+    </div> -->
   </ion-list>
   <ion-list>
     <ion-item color='secondary'>TRABAJADORES</ion-item>
     <ion-item *ngFor='let c of cabecillas' color='#FFFFFF'>{{c.nombre}}</ion-item>
   </ion-list>
-  <!-- <ion-list no-lines>
+  <ion-list>
     <ion-item color='secondary'>NO ASIGNADOS</ion-item>
-    <ion-item *ngFor='let n of noAsign' color='#FFFFFF'>{{n.nombre}} - {{n.puesto}}<ion-item-divider color='grey'></ion-item-divider></ion-item>  
-  </ion-list> -->
-  <button ion-button full round (click)='confirmarTraslado()'>Confirmar Traslado</button>
+    <ion-item *ngFor='let n of listNoAsi' color='#FFFFFF'>{{n.nombre}} - {{n.puesto}}</ion-item>  
+  </ion-list>
+  <button ion-button full round style=' height: 55px; font-weight: bold; font-size: 18px' (click)='confirmarTraslado()'>Confirmar Traslado</button>
 </ion-content>

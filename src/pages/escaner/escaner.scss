@@ -6,4 +6,17 @@ ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-deco
   background: transparent none !important; 
 }
 
+.wrapper{
 
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;   
+    width: 100%;
+    height: 50%;
+}
+
+
+//, .wrapper.cameraView .nav-decor

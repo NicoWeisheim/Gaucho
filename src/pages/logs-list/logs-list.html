@@ -7,22 +7,23 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  <ion-label style='padding-left: 18%'>
+    INGRESE FECHA DE ASISTENCIA
+  </ion-label>
   <ion-item>
     <ion-label>Fecha</ion-label>
     <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="fecha" (ngModelChange)="filter()"></ion-datetime>
   </ion-item>
-  <button ion-button color='primary' (click)='filter()'>Filtrar</button>
-    <accordion title="{{l.trabajador}}" *ngFor='let l of lista'>
+    <accordion title="{{l.trabajador}}" *ngFor='let l of list'>
       <ion-item>Fecha y Hora: {{l.fecha_hora}}</ion-item>
-      <ion-item *ngIf='l.check_in_out === 1'>Ingreso</ion-item>
-      <ion-item *ngIf='l.check_in_out === 0'>Egreso</ion-item>
+      <ion-item *ngIf='l.check_in_out === "1"'>Ingreso</ion-item>
+      <ion-item *ngIf='l.check_in_out === "0"'>Egreso</ion-item>
       <ion-item>Coordenadas: {{l.gps}}</ion-item>
       <ion-item>Proyecto: {{l.proyecto}}</ion-item>
       <ion-item>Cuadrilla: {{l.cuadrilla}}</ion-item>
       <ion-item>Escaneado por: {{l.usuario}}</ion-item>
     </accordion>
-  
-  <button ion-button full color='primary' (click)='export()'>Exportar a PDF</button>
+  <button ion-button full color='primary' style=' height: 55px; font-weight: bold; font-size: 18px' (click)='export()'>Exportar a PDF</button>
   <!-- <ion-row>
     <ion-col>
       <button ion-button full color='primary' (click)='export()'>Exportar a PDF</button>

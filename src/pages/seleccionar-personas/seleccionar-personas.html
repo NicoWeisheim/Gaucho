@@ -17,8 +17,10 @@
     </ion-item>
   </ion-list>
   <ion-list *ngIf='!filter'>
-      <ion-item *ngFor='let cuad of list'>
-        {{cuad.nombre}}
-      </ion-item>
+    <ion-item [class.highlight]="item.selected" *ngFor='let item of listNoAsi' (click)='itemTapped($event, item)'>{{item.nombre}} - {{item.puesto}}</ion-item>
     </ion-list>
+    <ion-list *ngIf='noSeleccionables'>
+      <ion-item *ngFor='let c of noSeleccionables'class='d'>{{c.nombre}}</ion-item>
+    </ion-list>
+    <button *ngIf='noAsi' ion-button full color='primary' style=' height: 55px; font-weight: bold; font-size: 18px' (click)='confirmarTraslado()' round>Confirmar Traslado</button>
 </ion-content>

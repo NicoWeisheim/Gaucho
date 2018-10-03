@@ -21,8 +21,26 @@ $app-direction: ltr;
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../../www/assets/fonts/Montserrat-Regular.woff2') format('woff2'),
+      url('../../www/assets/fonts/Montserrat-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../../www/assets/fonts/Montserrat-Bold.woff2') format('woff2'),
+      url('../../www/assets/fonts/Montserrat-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+}
 
+$font-family-base: 'Montserrat';
+$font-family-ios-base: 'Montserrat';
+$font-family-md-base: 'Montserrat';
+$font-family-wp-base: 'Montserrat';
 
 
 // Named Color Variables
@@ -86,5 +104,5 @@ $colors: (
 // Fonts
 // --------------------------------------------------
 
-@import "roboto";
+@import "../../www/assets/fonts/Montserrat.scss";
 @import "noto-sans";

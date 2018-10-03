@@ -1,11 +1,29 @@
 page-confirmar-traslado {
-    background-color: #b6b5b5;
+    background-color: lightgrey;
 
+.a{
+    border: 0px none #1C6EA4;
+    -webkit-border-radius: 40px 40px 40px 40px;
+-moz-border-radius: 40px 40px 40px 40px;
+border-radius: 40px 40px 40px 40px;
+    background-color: white;
+    display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: auto;
+   text-align: center;
+   max-width: 100% !important;
+    width: 100% !important;
+   height: 55px;
+   color: #000000;
+    
 
-    ion-item-divider{
-        margin-top: 16px;
-        min-height: 1px!important;
-      }
+}
+
+ion-content{
+    background-color: lightgrey;
+}
 
 }
 

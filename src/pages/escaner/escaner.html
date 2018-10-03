@@ -6,22 +6,19 @@
     <ion-title color="light">Escaner QR</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content>
   <ion-row>
-    <button *ngIf='camera' ion-button color="primary" (click)="openScanner()">Escanear</button>
+    <button *ngIf='camera' style=' height: 55px; font-weight: bold; font-size: 18px' ion-button full color="primary" (click)="openScanner()">Escanear</button>
   </ion-row>
  <ion-row>
-  <button ion-button *ngIf='camera' color="primary" (click)="ingresarManualmente()">Ingresar manualmente</button>
+  <button ion-button *ngIf='camera' full color="primary" style=' height: 55px; font-weight: bold; font-size: 18px' (click)="ingresarManualmente()">Ingresar manualmente</button>
  </ion-row> 
  <ion-row>
-   <ion-col>
-    <ion-item *ngIf='camera'>
-      <ion-label>Proyecto: </ion-label>
-      <ion-select [(ngModel)]="proyecto">
-        <ion-option *ngFor='let po of proyectos' value="{{po.id}}">{{po.nombre}}</ion-option>
-      </ion-select>
-    </ion-item>
-   </ion-col>
+  <ion-item *ngIf='camera'>
+    <ion-label>Flash</ion-label>
+    <ion-toggle [(ngModel)]="flash"></ion-toggle>
+  </ion-item>
  </ion-row>
  <ion-row>
   <ion-col>
@@ -30,12 +27,10 @@
       <ion-input [(ngModel)]="qr"></ion-input>
      </ion-item>
   </ion-col>
+</ion-row>
+<ion-row>
   <ion-col>
-    <ion-fab *ngIf="manual">
-      <button ion-fab mini (click)="manualScan()">
-        <ion-icon name="arrow-forward"></ion-icon>
-      </button>
-    </ion-fab>
+    <button ion-button full style=' height: 55px; font-weight: bold; font-size: 18px' *ngIf="manual" (click)='manualScan()'>OK</button>
   </ion-col>
 </ion-row>
 

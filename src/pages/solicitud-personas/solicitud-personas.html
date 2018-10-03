@@ -6,7 +6,7 @@
     <ion-title color="light">Solicitud de Personas</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
+<!-- <ion-content>
   <ion-list>
     <ion-item>
       <ion-label>Cantidad de Personas: </ion-label>
@@ -32,4 +32,47 @@
     </ion-item>
   </ion-list> 
   <button ion-button block color='primary' (click)="confirmarSolicitud()">Confirmar Solicitud</button>
-</ion-content>
+</ion-content> -->
+<div style="position: absolute; top: 90px; width: 360px">
+  <div style="text-align: center; width: 360px">
+      <input class ='c' type="number"[(ngModel)]="cantidad" placeholder="CANTIDAD DE PERSONAS">
+  </div>
+</div>
+<div style="position: absolute; top: 155px; width: 360px; margin-bottom: 5px;">
+  <div style="text-align: center;width: 360px">
+    <ion-datetime class="a" displayFormat="DD/MM/YYYY" [(ngModel)]="diaIngreso" placeholder='DIA INGRESO'></ion-datetime>
+  </div>
+</div>
+<div style="position: absolute; top: 220px; width: 360px; margin-bottom: 5px;">
+  <div style="text-align: center;width: 360px">
+    <button class='a' *ngIf='btn1' ion-button full round style=' height: 55px;' color="primary" (click)="openCard1()">DESTINO</button>
+    <button class='a' *ngIf='!btn1' ion-button full round style=' height: 55px;' color="primary" (click)="openCard1()">{{destino[0].nombre_campo}} Planta {{destino[0].numero_planta}}</button>
+  </div>
+</div>
+<div style="position: absolute; top: 285px; width: 360px; margin-bottom: 5px;">
+  <div style="text-align: center;width: 360px">
+    <ion-textarea class="b" [(ngModel)]="observaciones" placeholder='OBSERVACIONES: '></ion-textarea>
+  </div>
+</div>
+<div style="position: absolute; bottom: 0px; width: 360px; margin-bottom: 5px;">
+  <div style="text-align: center;width: 360px">
+    <button *ngIf='!cards' ion-button full round style=' height: 55px; font-weight: bold; font-size: 18px' color="primary" (click)="confirmarSolicitud()">CONFIRMAR SOLICITUD</button>
+  </div>
+</div>
+<ion-card style="position: absolute; top: 60px;" *ngIf='card1'>
+  <ion-card-content>
+    <ion-scroll scrollY="true">
+      <ion-list>
+        <ion-item [class.highlight]="item.selected" *ngFor='let item of campos' (click)='itemTapped1($event, item)'>{{item.nombre_campo}} Planta {{item.numero_planta}}</ion-item>
+      </ion-list>
+    </ion-scroll>
+    <ion-row>
+      <ion-col>
+        <button ion-button color='danger' full block style=' height: 55px; font-weight: bold; font-size: 18px' (click)='cancelCard1()'>Cancelar</button>  
+      </ion-col>
+      <ion-col>
+        <button ion-button color='primary' full block style=' height: 55px; font-weight: bold; font-size: 18px' (click)='okCard1()'>Ok</button>
+      </ion-col>
+    </ion-row>
+  </ion-card-content>
+</ion-card>

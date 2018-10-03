@@ -5,23 +5,45 @@
 </ion-header>  
 <ion-content>
   <ion-row *ngIf="exist">
-    <h1>Usted a escaneado a</h1>
+    <h1 style='font-size: 30px;'>Usted a escaneado a</h1>
   </ion-row>
   <ion-row *ngIf="exist"> 
-    <img class="circle-pic" src="../../assets/imgs/peon.jpg">
+    <img class="circle-pic" src={{path}}>
   </ion-row>
   <ion-row *ngIf="exist">
-    <h3>{{trabajador.nombre}}</h3>
+    <h3 style='font-size: 30px;'>{{trabajador.nombre}}</h3>
   </ion-row>
   <ion-row *ngIf="exist">
-    <h3>{{hora}}</h3>
+    <h3 style="font-size: 30px;">{{hora}}</h3>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <button class='b43'*ngIf='exist' ion-button full round style=' height: 55px; width: 360px' (click)="openCard1()">PROYECTO: {{proye[0].nombre}}</button>
+    </ion-col>
   </ion-row>
   <ion-row *ngIf="exist">
     <ion-col>
-      <button ion-button full color="secondary" (click)='ingreso()'>Ingreso</button>
+      <button style="height: 90px; font-size: 25px; font-weight: bold" ion-button full color="secondary" (click)='ingreso()'>INGRESO</button>
     </ion-col>
     <ion-col>
-      <button ion-button full color="danger" (click)='egreso()'>Egreso</button>
+      <button style="height: 90px;font-size: 25px; font-weight: bold" ion-button full color="danger" (click)='egreso()'>SALIDA</button>
     </ion-col>
   </ion-row>
+  <ion-card *ngIf="card1">
+    <ion-card-content>
+      <ion-scroll scrollY="true">
+        <ion-list>
+          <ion-item [class.highlight]="item.selected" *ngFor='let item of proyectos' (click)='itemTapped1($event, item)'>{{item.nombre}}</ion-item>
+        </ion-list>
+      </ion-scroll>
+      <ion-row>
+        <ion-col>
+          <button ion-button color='danger' full block style=' height: 55px; font-weight: bold; font-size: 18px' (click)='cancelCard1()'>Cancelar</button>  
+        </ion-col>
+        <ion-col>
+          <button ion-button color='primary' full block style=' height: 55px; font-weight: bold; font-size: 18px' (click)='okCard1()'>Ok</button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -19,7 +19,7 @@ interface puestos{
   nombre: string
 }
 
-interface supervisores {
+interface usuarios {
   id: number,
   nombre: string
 }
@@ -31,7 +31,8 @@ interface solicitudes{
   cantidad_personas: number,
   id_campo_destino: number,
   fecha_ingreso: string,
-  sincronizado: number
+  sincronizado: number,
+  observaciones: string
 }
 
 interface cuadrillas {
@@ -44,7 +45,7 @@ interface trabajadores {
   nombre: string,
   puesto_id: number,
   foto: string,
-  qr: number,
+  qr: string,
   cuadrilla_id: number
 }
 
@@ -89,30 +90,10 @@ export class SqlStorageProvider {
     {
       this.db = db;
       this.db.executeSql('CREATE TABLE IF NOT EXISTS puestos(id INTEGER PRIMARY KEY, nombre TEXT);', []);
-      this.db.executeSql('CREATE TABLE IF NOT EXISTS supervisores(id INTEGER PRIMARY KEY, nombre TEXT);', []);
+      this.db.executeSql('CREATE TABLE IF NOT EXISTS usuarios(id INTEGER PRIMARY KEY, nombre TEXT);', []);
       this.db.executeSql('CREATE TABLE IF NOT EXISTS grupo_traslado(id INTEGER PRIMARY KEY, id_traslado INTEGER, id_trabajador INTEGER, fecha_creacion TEXT);',[]);
-      this.db.executeSql('CREATE TABLE IF NOT EXISTS solicitudes(id INTEGER PRIMARY KEY, fecha TEXT, supervisor_id INTEGER, cantidad_personas INTEGER, id_campo_destino INTEGER, fecha_ingreso TEXT, sincronizado INTEGER);',[]);
-      this.db.executeSql('INSERT or REPLACE INTO campos(id,nombre_campo,numero_planta) VALUES (1,"La Maluca", 1);', []);
-      this.db.executeSql('INSERT or REPLACE INTO campos(id,nombre_campo,numero_planta) VALUES (2,"El Sigilo", 2);', []);
-      this.db.executeSql('INSERT or REPLACE INTO campos(id,nombre_campo,numero_planta) VALUES (3,"Catriel", 3);', []);
-      this.db.executeSql('INSERT or REPLACE INTO cuadrillas(id,nombre_cuadrilla) VALUES (1,"Juan Manuel");', []);
-      this.db.executeSql('INSERT or REPLACE INTO cuadrillas(id,nombre_cuadrilla) VALUES (2,"Maximiliano Paez");', []);
-      this.db.executeSql('INSERT or REPLACE INTO proyectos(id,nombre,campo_id) VALUES (1,"Y2000", 1);', []);
-      this.db.executeSql('INSERT or REPLACE INTO proyectos(id,nombre,campo_id) VALUES (2,"Y2001", 2);', []);
-      this.db.executeSql('INSERT or REPLACE INTO proyectos(id,nombre,campo_id) VALUES (3,"Y2002", 3);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (1, "Juan Manuel", 4, 0, 1, 1);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (2, "Pedro Ramirez", 5, 0, 2, 2);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (3, "Ramon Quiroga", 5, 0, 3, 2);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (4, "Maximiliano Paez", 4, 0, 4, 2);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (5, "Oscar Tabarez", 7, 0, 5, 0);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (6, "Carlos Perez", 5, 0, 6, 1);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (7, "Pedro Marti", 5, 0, 7, 1);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (8, "Pepe Argento", 6, 0, 8, 0);', []);
-      this.db.executeSql('INSERT or REPLACE INTO trabajadores(id,nombre,puesto_id,foto,qr,cuadrilla_id) VALUES (9, "Rodrigo Rodriguez", 7, 0, 9, 0);', []);
-      this.db.executeSql('INSERT or REPLACE INTO supervisores(id,nombre) VALUES (1,"Juan Manuel");', []);
-      this.db.executeSql('INSERT or REPLACE INTO supervisores(id,nombre) VALUES (2,"Maximiliano Paez");', []);
-      this.db.executeSql('INSERT or REPLACE INTO supervisores(id,nombre) VALUES (3,"Nicolas Weisheim");', []);
-      // this.db.executeSql('INSERT OR REPLACE INTO puestos(id,nombre) VALUES(0,"Admin")', []);
+      this.db.executeSql('CREATE TABLE IF NOT EXISTS solicitudes(id INTEGER PRIMARY KEY, fecha TEXT, supervisor_id INTEGER, cantidad_personas INTEGER, id_campo_destino INTEGER, fecha_ingreso TEXT ,sincronizado INTEGER, observaciones TEXT);',[]);
+      this.db.executeSql('INSERT OR REPLACE INTO puestos(id,nombre) VALUES(0,"Admin")', []);
       this.db.executeSql('INSERT OR REPLACE INTO puestos(id,nombre) VALUES(1,"Supervisor")', []);
       this.db.executeSql('INSERT OR REPLACE INTO puestos(id,nombre) VALUES(2,"Proveedor")', []);
       this.db.executeSql('INSERT OR REPLACE INTO puestos(id,nombre) VALUES(3,"Capataz")', []);
@@ -142,6 +123,7 @@ getCampos(){
             // }]
         }
       }
+      console.log(campo);
       resolve(campo);
     }, (error) => {
       reject(error);
@@ -162,6 +144,7 @@ getCampos(){
           proyectos[i] = data.rows.item(i);
         }
       }
+      console.log(proyectos);
       resolve(proyectos);
     }, (error) => {
       reject(error);
@@ -169,17 +152,18 @@ getCampos(){
   });
 }
 
-getSupervisores(){
+getUsuarios(){
   return new Promise((resolve, reject) => {
-    this.db.executeSql('SELECT * from supervisores', []).then((data) => {
-      let supervisore: supervisores[] = [{id: 0, nombre: ''}];
+    this.db.executeSql('SELECT * from usuarios', []).then((data) => {
+      let usuarios: usuarios[] = [{id: 0, nombre: ''}];
       if (data.rows.length > 0) {
         for(let i=0; i <data.rows.length; i++) {
-          supervisore[i] = data.rows.item(i); 
+          usuarios[i] = data.rows.item(i); 
          
         }
       }
-      resolve(supervisore);
+      console.log(usuarios);
+      resolve(usuarios);
     }, (error) => {
       reject(error);
     })
@@ -230,10 +214,10 @@ getCamposById(id){
   });
 }
 
-getSupervisoresById(id){
+getUsuariosById(id){
   return new Promise((resolve, reject) => {
-    this.db.executeSql('SELECT * from supervisores where id in (?)', [id]).then((data) => {
-      let supervisore: supervisores;
+    this.db.executeSql('SELECT * from usuarios where id in (?)', [id]).then((data) => {
+      let supervisore: usuarios;
       if (data.rows.length > 0) {
         for(let i=0; i <data.rows.length; i++) {
           // supervisores.push(data.rows.item(i));
@@ -255,7 +239,14 @@ getSupervisoresById(id){
 getTrabajadorByQr(qr){
   return new Promise((resolve, reject) => {
     this.db.executeSql('SELECT * from trabajadores where qr in (?)', [qr]).then((data) => {
-      let trabajador: trabajadores;
+      let trabajador: trabajadores = {
+        id: 0,
+        nombre: '',
+        foto: '',
+        qr: '',
+        cuadrilla_id: 0,
+        puesto_id: 0
+      };
       if (data.rows.length > 0) {
         for(let i=0; i <data.rows.length; i++) {
           // trabajadores.push(data.rows.item(i));
@@ -284,7 +275,7 @@ getTrabajadoresNoAsignados(){
         nombre: '',
         puesto_id: 0,
         foto: '',
-        qr: 0,
+        qr: '',
         cuadrilla_id: 0
       }];
       if (data.rows.length > 0) {
@@ -307,7 +298,7 @@ public async getTrabajadoresByCuadrilla(id){
         nombre: '',
         puesto_id: 0,
         foto: '',
-        qr: 0,
+        qr: '',
         cuadrilla_id: 0
       }];
       if (data.rows.length > 0) {
@@ -330,7 +321,7 @@ getTrabajadores(): Promise<trabajadores[]>{
         nombre: '',
         puesto_id: 0,
         foto: '',
-        qr: 0,
+        qr: '',
         cuadrilla_id: 0
       }];
       if (data.rows.length > 0) {
@@ -338,6 +329,7 @@ getTrabajadores(): Promise<trabajadores[]>{
           trabajador[i] = data.rows.item(i);
         }
       }
+      console.log(trabajador);
       resolve(trabajador);
     }, (error) => {
       reject(error);
@@ -353,7 +345,7 @@ getCabecillas(){
         nombre: '',
         puesto_id: 0,
         foto: '',
-        qr: 0,
+        qr: '',
         cuadrilla_id: 0
       }];
       if (data.rows.length > 0) {
@@ -376,7 +368,7 @@ getIntegrantesCuadrilla(cuadrilla_id){
         nombre: '',
         puesto_id: 0,
         foto: '',
-        qr: 0,
+        qr: '',
         cuadrilla_id: 0
       }];
       if (data.rows.length > 0) {
@@ -530,9 +522,9 @@ postGrupoTraslados(id_traslado, id_trabajador, fecha_creacion){
   
 }
 
-postSolicitues(fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso, sincronizado){
+postSolicitues(fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso ,sincronizado,observaciones){
   return new Promise((resolve, reject) => {
-    this.db.executeSql('INSERT INTO solicitudes(fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso, sincronizado) VALUES (?,?,?,?,?,?)', [fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso, sincronizado]).then((data) => {
+    this.db.executeSql('INSERT INTO solicitudes(fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso ,sincronizado,observaciones) VALUES (?,?,?,?,?,?,?)', [fecha, supervisor_id, cantidad_personas, id_campo_destino, fecha_ingreso ,sincronizado,observaciones]).then((data) => {
       console.log(data);
       resolve(data);
    }, (error) => {reject(error);})
@@ -551,6 +543,7 @@ getSolicitudes(){
           cantidad_personas: 0,
           id_campo_destino: 0,
           fecha_ingreso: '',
+          observaciones: '',
           sincronizado: 0
        }
        ];
@@ -571,6 +564,31 @@ getSolicitudes(){
 getGrupoTraslados(){
   return new Promise((resolve, reject) => {
     this.db.executeSql('SELECT * from grupo_traslado', []).then((data) => {
+      let grupo: grupo_traslado[] =  [           
+        {
+          id: 0,
+          id_traslado: 0,
+          id_trabajador: 0,
+          fecha_creacion: ''
+       }
+       ];
+      if (data.rows.length > 0) {
+        for(let i=0; i <data.rows.length; i++) {
+          grupo[i] = data.rows.item(i);
+        }
+      }
+      console.log(grupo);
+      resolve(grupo);
+    }, (error) => {
+      reject(error);
+    })
+  });
+  
+}
+
+getGrupoTrasladosByTraslado(id){
+  return new Promise((resolve, reject) => {
+    this.db.executeSql('SELECT * from grupo_traslado where id_traslado in (?)', [id]).then((data) => {
       let grupo: grupo_traslado[] =  [           
         {
           id: 0,
@@ -698,16 +716,20 @@ getCuadrillaById(id){
   });
 }
 
-getCuadrilla(): Promise<cuadrillas[]>{
+getCuadrilla(){
   return new Promise((resolve, reject) => {
     this.db.executeSql('SELECT * from cuadrillas', []).then((data) => {
-      let cuadrilla: cuadrillas[];
+      let cuadrilla: cuadrillas[] = [{
+        id: 0,
+        nombre_cuadrilla: ''
+      }];
       if (data.rows.length > 0) {
         for(let i=0; i <data.rows.length; i++) {
           // trabajadores.push(data.rows.item(i));
           cuadrilla[i] = data.rows.item(i);
         }
       }
+      console.log(cuadrilla);
       resolve(cuadrilla);
     }, (error) => {
       reject(error);
@@ -826,6 +848,7 @@ getSolicitudesSinSincronizar(){
           cantidad_personas: 0,
           id_campo_destino: 0,
           fecha_ingreso: '',
+          observaciones: '',
           sincronizado: 0
        }
        ];
@@ -843,4 +866,114 @@ getSolicitudesSinSincronizar(){
   
 }
 
+updateTrasladoSincronizado(){
+  return new Promise((resolve, reject) => {
+    this.db.executeSql('UPDATE traslados SET sincronizado = 1 where sincronizado = 0', []).then((data) => {
+      
+      resolve(data);
+   }, (error) => {reject(error);})
+  })
+  
+}
+
+updateSolicitudesSincronizado(){
+  return new Promise((resolve, reject) => {
+    this.db.executeSql('UPDATE solicitudes SET sincronizado = 1 where sincronizado = 0', []).then((data) => {
+      
+      resolve(data);
+   }, (error) => {reject(error);})
+  })
+  
+}
+
+updateLogsSincronizado(){
+  return new Promise((resolve, reject) => {
+    this.db.executeSql('UPDATE logs SET sincronizado = 1 where sincronizado = 0', []).then((data) => {
+      
+      resolve(data);
+   }, (error) => {reject(error);})
+  })
+  
+}
+
+insertProyectos(id, nombre, campo){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('INSERT or REPLACE INTO proyectos VALUES (?,?,?)', [id, nombre, campo]).then((data) => {
+          
+          resolve(data);
+       }, (error) => {reject(error);})
+      })
+    }
+
+    insertCuadrillas(id, nombre){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('INSERT or REPLACE INTO cuadrillas VALUES (?,?)', [id, nombre]).then((data) => {
+          
+          resolve(data);
+       }, (error) => {reject(error);})
+      })
+    }
+
+    insertCampos(id, nombre_campo, numero_planta){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('INSERT or REPLACE INTO campos VALUES (?,?,?)', [id, nombre_campo, numero_planta]).then((data) => {
+          
+          resolve(data);
+       }, (error) => {reject(error);})
+      })
+    }
+
+    insertTrabajadores(id,nombre, puesto_id, foto, qr, cuadrilla_id){
+      
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('INSERT or REPLACE INTO trabajadores VALUES (?,?,?,?,?,?)', [id, nombre, puesto_id, foto, qr, cuadrilla_id]).then((data) => {
+          
+          resolve(data);
+       }, (error) => {reject(error);})
+      })
+    }
+
+    insertUsuarios(id, nombre){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('INSERT or REPLACE INTO usuarios VALUES (?,?)', [id, nombre]).then((data) => {
+          
+          resolve(data);
+       }, (error) => {reject(error);})
+      })
+    }
+
+    getUsuariosByNombre(nombre){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('SELECT * from usuarios where nombre in (?)', [nombre]).then((data) => {
+          let usuarios: usuarios[] = [{id: 0, nombre: ''}];
+          if (data.rows.length > 0) {
+            for(let i=0; i <data.rows.length; i++) {
+              usuarios[i] = data.rows.item(i); 
+             
+            }
+          }
+          console.log(usuarios);
+          resolve(usuarios);
+        }, (error) => {
+          reject(error);
+        })
+      });
+    }
+    getUsuarioById(id){
+      return new Promise((resolve, reject) => {
+        this.db.executeSql('SELECT * from usuarios where id in (?)', [id]).then((data) => {
+          let usuarios: usuarios = {id: 0, nombre: ''};
+          if (data.rows.length > 0) {
+            for(let i=0; i <data.rows.length; i++) {
+              usuarios = data.rows.item(i); 
+             
+            }
+          }
+          console.log(usuarios);
+          resolve(usuarios);
+        }, (error) => {
+          reject(error);
+        })
+      });
+    }
 }

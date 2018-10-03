@@ -1,3 +1,104 @@
 page-solicitud-personas {
-
+    background-color: lightgray;
+    .highlight{
+        background-color: #488aff !important;
+        
+    }
 }
+.a{
+    border: 0px none #1C6EA4;
+    -webkit-border-radius: 40px 40px 40px 40px;
+-moz-border-radius: 40px 40px 40px 40px;
+border-radius: 40px 40px 40px 40px;
+    background-color: white;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+     text-align: center;
+   max-width: 100% !important;
+    width: 100% !important;
+   height: 30px;
+   color: #000000;
+   font-size: 20px;
+   ::placeholder{
+    font-weight: bold;
+    color: #000000;
+}
+}
+
+.b{
+    border: 0px none #1C6EA4;
+    -webkit-border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+   text-align: center;
+   margin-top: auto;
+   margin-bottom: 7px;
+   max-width: 100% !important;
+    width: 100% !important;
+   height: 150px;
+   color: #000000; 
+   font-size: 20px;
+   font-weight: bold;
+   ::placeholder{
+    font-weight: bold;
+    color: #000000;
+}
+}
+
+ion-button{
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+.c{
+    border: 0px none #1C6EA4;
+    -webkit-border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+border-radius: 10px 10px 10px 10px;
+    background-color: white;
+    display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+   text-align: center;
+   max-width: 100% !important;
+   width: 100% !important;
+  height: 55px;
+  color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    ::placeholder{
+        font-weight: bold;
+        color: #000000;
+    }
+}
+
+ion-scroll{
+    height: 400px;
+}
+
+// ion-select{
+//     font-size: 10px;
+//     line-height: 1.2;
+//     letter-spacing: 0.1px;
+//     color: #29235e;
+//     width: 100% !important;
+//     max-width: 100% !important;
+//     justify-content: center;
+//     height: 100%;
+// }
+
+// ion-option{
+//     font-size: 10px;
+//     line-height: 1.2;
+//     letter-spacing: 0.1px;
+//     color: #29235e;
+//     width: 100% !important;
+//     max-width: 100% !important;
+//     justify-content: center;
+//     height: 100%;  
+// }

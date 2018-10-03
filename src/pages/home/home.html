@@ -1,23 +1,27 @@
 <ion-content class="container">
 </ion-content>
-<div style="position: absolute; bottom: 170px; width: 100%">
+<div style="position: absolute; bottom: 280px; padding-left: 27% ">
+  <h1 style="text-align: center; font-size: 50px;">
+    TRACK
+  </h1>
+</div>
+<div style="position: absolute; bottom: 220PX; padding-left: 5%">
+  <h3 style="text-align: center; font-size:12px; ">
+    POR FAVOR INGRESE SU USUARIO DE SYNGENTA ONE
+  </h3>
+</div>
+<div style="position: absolute; bottom: 150px;">
   <div style="text-align: center">
-    <ion-item>
-      <ion-label color="primary" floating>Usuario</ion-label>
-      <ion-input type="email" [(ngModel)]="user"></ion-input>
-    </ion-item>
+      <input type="email"[(ngModel)]="user" placeholder="INGRESAR MAIL">
   </div>
 </div>
-<div style="position: absolute; bottom: 100px; width: 100%">
+<div style="position: absolute; bottom: 80px;">
   <div style="text-align: center">
-    <ion-item>
-      <ion-label color="primary" floating>Contraseña</ion-label>
-      <ion-input type="password" [(ngModel)]="pw"></ion-input>
-    </ion-item>
+      <input type="password"[(ngModel)]="pw" placeholder="INGRESAR CONTRASEÑA">
   </div>
 </div>
-<div style="position: absolute; bottom: 0px; width: 100%">
+<div style="position: absolute; bottom: 0px; width: 100%;">
   <div style="text-align: center">
-    <button ion-button full color="dark" (click)="goToWelcome()">Ingresar</button>
+    <button style=' height: 55px; font-weight: bold; font-size: 18px' ion-button full color="dark" (click)="goToWelcome()">Ingresar</button>
   </div>
 </div>
